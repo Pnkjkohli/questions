@@ -212,5 +212,12 @@ div.dt-container div.dt-layout-row {
 .questions{
   grid-area: content;
 }
+canvas{
+  position: absolute;
+  right: 10%;
+ top:20%;
+  bottom: 0px;
+  background-color: #00d4ff;
+}
 
 

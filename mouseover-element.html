@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mouseover Element</title>
+  <link rel="stylesheet" href="index.css">
+  
+
+</head>
+<body>
+  <div class="dashboard">
+    <aside class="search-wrap">
+      <div class="search">
+        <label for="search">
+        
+           <h3>Mouseover Element</h3>
+        </label>
+      </div>
+      
+      <div class="user-actions">
+        <button>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.094 2.085l-1.013-.082a1.082 1.082 0 0 0-.161 0l-1.063.087C6.948 2.652 4 6.053 4 10v3.838l-.948 2.846A1 1 0 0 0 4 18h4.5c0 1.93 1.57 3.5 3.5 3.5s3.5-1.57 3.5-3.5H20a1 1 0 0 0 .889-1.495L20 13.838V10c0-3.94-2.942-7.34-6.906-7.915zM12 19.5c-.841 0-1.5-.659-1.5-1.5h3c0 .841-.659 1.5-1.5 1.5zM5.388 16l.561-1.684A1.03 1.03 0 0 0 6 14v-4c0-2.959 2.211-5.509 5.08-5.923l.921-.074.868.068C15.794 4.497 18 7.046 18 10v4c0 .107.018.214.052.316l.56 1.684H5.388z"/></svg>
+        </button>
+        <button>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 21c4.411 0 8-3.589 8-8 0-3.35-2.072-6.221-5-7.411v2.223A6 6 0 0 1 18 13c0 3.309-2.691 6-6 6s-6-2.691-6-6a5.999 5.999 0 0 1 3-5.188V5.589C6.072 6.779 4 9.65 4 13c0 4.411 3.589 8 8 8z"/><path d="M11 2h2v10h-2z"/></svg>
+        </button>
+      </div>
+    </aside>
+
+    <div include-html="partial-dashboard-component.html" id="partial-dashboard_file">
+    </div>
+
+
+    <div class="task">
+
+     
+
+    </div>
+  </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>		
+    <script src="include-html.min.js"></script>
+
+    <script>
+
+window.onload = function() {
+      startGame();
+    }
+    var myGamePiece;
+var myGamePiece1;
+var myGamePiece2;
+var myGamePiece3;
+var myGamePiece4;
+
+function startGame() {
+    // myGamePiece = new component(10, 10, "red", 100, 150);
+    myGamePiece = new component(30, 30, "red", 10, 100, 5); 
+
+    myGamePiece1 = new component1(10, 10, "green", 100, 150);
+    myGamePiece2 = new component2(10, 10, "orange", 100, 150);
+    myGamePiece3 = new component3(10, 10, "blue", 100, 150);
+    myGamePiece4 = new component4(10, 10, "yellow", 100, 150);
+    myGameArea.start();
+}
+
+var myGameArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = 780;
+        this.canvas.height = 270;
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.frameNo = 0;
+        this.interval = setInterval(updateGameArea, 20);
+
+        this.canvas.addEventListener('mousemove', onMouseMove);
+    },
+    stop : function() {
+        clearInterval(this.interval);
+    },    
+    clear : function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+}
+
+
+
+function component(width, height, color, x, y, radius) {
+  this.originalRadius = radius;  
+  this.radius = radius; 
+  this.width = width;
+  this.height = height;
+  this.speed = 1;
+  this.angle = 0;
+  this.moveAngle = 1;
+  this.x = x;
+  this.y = y; 
+  this.isHovered = false; 
+
+  this.update = function() {
+      ctx = myGameArea.context;
+      ctx.save();
+ 
+      ctx.translate(this.x, this.y); 
+      ctx.rotate(this.angle);
+      
+     
+      if (this.isHovered) {
+        this.radius = this.originalRadius + 5;  
+        ctx.fillStyle = "red";
+      } else {
+        this.radius = this.originalRadius; 
+        ctx.fillStyle = color;  
+      }
+
+     
+      ctx.beginPath();
+      ctx.arc(0, 0, this.radius, 0, 2 * Math.PI); 
+      ctx.fill();
+      ctx.restore();
+
+    
+  }
+
+
+
+
+  this.newPos = function() {
+      this.angle += this.moveAngle * Math.PI / 180;
+      this.x += this.speed * Math.sin(this.angle);
+      this.y -= this.speed * Math.cos(this.angle);
+  }
+
+
+    // Check if mouse is inside the shape (circle)
+  this.checkHover = function(mx, my) {
+      var dx = mx - this.x;
+      var dy = my - this.y;
+      var distance = Math.sqrt(dx * dx + dy * dy);
+      this.isHovered = distance <= this.radius;  // Check if the mouse is within the radius of the circle
+  }
+}
+
+
+
+
+function component1(width, height, color, x, y, type) {
+    this.type = type;
+    this.width = width;
+    this.height = height;
+    this.speed = 1;
+    this.angle = 0;
+    this.moveAngle = 1;
+    this.x = x;
+    this.y = y;    
+    this.isHovered = false;
+
+    this.update = function() {
+        ctx = myGameArea.context;
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.angle);
+
+        if (this.isHovered) {
+            ctx.fillStyle = "green";
+            ctx.fillRect(this.width / -2, this.height / -2, this.width * 2, this.height * 2);        
+        } else {
+            ctx.fillStyle = color;
+            ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);        
+        }
+        ctx.restore();    
+    }
+
+    this.newPos = function() {
+        this.angle += this.moveAngle * Math.PI / 80;
+        this.x += this.speed * Math.sin(this.angle);
+        this.y -= this.speed * Math.cos(this.angle);
+    }
+
+    this.checkHover = function(mx, my) {
+        var dx = mx - this.x;
+        var dy = my - this.y;
+        var distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < this.width) {
+            this.isHovered = true;
+        } else {
+            this.isHovered = false;
+        }
+    }
+}
+
+
+function component2(width, height, color, x, y, type) {
+    this.type = type;
+    this.width = width;
+    this.height = height;
+    this.speed = 1;
+    this.angle = 0;
+    this.moveAngle = 1;
+    this.x = x;
+    this.y = y;    
+    this.isHovered = false;
+
+    this.update = function() {
+        ctx = myGameArea.context;
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.angle);
+
+        if (this.isHovered) {
+            ctx.fillStyle = "orange";
+            ctx.fillRect(this.width / -2, this.height / -2, this.width * 2, this.height * 2);        
+        } else {
+            ctx.fillStyle = color;
+            ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);        
+        }
+        ctx.restore();    
+    }
+
+    this.newPos = function() {
+        this.angle += this.moveAngle * Math.PI / 280;
+        this.x += this.speed * Math.sin(this.angle);
+        this.y -= this.speed * Math.cos(this.angle);
+    }
+
+    this.checkHover = function(mx, my) {
+        var dx = mx - this.x;
+        var dy = my - this.y;
+        var distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < this.width) {
+            this.isHovered = true;
+        } else {
+            this.isHovered = false;
+        }
+    }
+}
+
+
+
+function component3(width, height, color, x, y, type) {
+    this.type = type;
+    this.width = width;
+    this.height = height;
+    this.speed = 1;
+    this.angle = 0;
+    this.moveAngle = 1;
+    this.x = x;
+    this.y = y;    
+    this.isHovered = false;
+
+    this.update = function() {
+        ctx = myGameArea.context;
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.angle);
+
+        if (this.isHovered) {
+            ctx.fillStyle = "blue";
+            ctx.fillRect(this.width / -2, this.height / -2, this.width * 2, this.height * 2);        
+        } else {
+            ctx.fillStyle = color;
+            ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);        
+        }
+        ctx.restore();    
+    }
+
+    this.newPos = function() {
+        this.angle += this.moveAngle * Math.PI / 310;
+        this.x += this.speed * Math.sin(this.angle);
+        this.y -= this.speed * Math.cos(this.angle);
+    }
+
+    this.checkHover = function(mx, my) {
+        var dx = mx - this.x;
+        var dy = my - this.y;
+        var distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < this.width) {
+            this.isHovered = true;
+        } else {
+            this.isHovered = false;
+        }
+    }
+}
+
+
+function component4(width, height, color, x, y, type) {
+    this.type = type;
+    this.width = width;
+    this.height = height;
+    this.speed = 1;
+    this.angle = 0;
+    this.moveAngle = 1;
+    this.x = x;
+    this.y = y;    
+    this.isHovered = false;
+
+    this.update = function() {
+        ctx = myGameArea.context;
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.angle);
+
+        if (this.isHovered) {
+            ctx.fillStyle = "yellow";
+            ctx.fillRect(this.width / -2, this.height / -2, this.width * 2, this.height * 2);        
+        } else {
+            ctx.fillStyle = color;
+            ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);        
+        }
+        ctx.restore();    
+    }
+
+    this.newPos = function() {
+        this.angle += this.moveAngle * Math.PI / 350;
+        this.x += this.speed * Math.sin(this.angle);
+        this.y -= this.speed * Math.cos(this.angle);
+    }
+
+    this.checkHover = function(mx, my) {
+        var dx = mx - this.x;
+        var dy = my - this.y;
+        var distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < this.width) {
+            this.isHovered = true;
+        } else {
+            this.isHovered = false;
+        }
+    }
+}
+
+
+function updateGameArea() {
+    myGameArea.clear();
+
+    // Check if the mouse is over any of the balls
+    myGamePiece.checkHover(myGameArea.canvas.mouseX, myGameArea.canvas.mouseY);
+    myGamePiece1.checkHover(myGameArea.canvas.mouseX, myGameArea.canvas.mouseY);
+    myGamePiece2.checkHover(myGameArea.canvas.mouseX, myGameArea.canvas.mouseY);
+    myGamePiece3.checkHover(myGameArea.canvas.mouseX, myGameArea.canvas.mouseY);
+    myGamePiece4.checkHover(myGameArea.canvas.mouseX, myGameArea.canvas.mouseY);
+
+    myGamePiece.newPos();
+    myGamePiece1.newPos();
+    myGamePiece2.newPos();
+    myGamePiece3.newPos();
+    myGamePiece4.newPos();
+
+    myGamePiece.update();
+    myGamePiece1.update();
+    myGamePiece2.update();
+    myGamePiece3.update();
+    myGamePiece4.update();
+}
+
+function onMouseMove(event) {
+    var rect = myGameArea.canvas.getBoundingClientRect();
+    myGameArea.canvas.mouseX = event.clientX - rect.left;
+    myGameArea.canvas.mouseY = event.clientY - rect.top;
+}
+
+
+    </script>
+   
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
