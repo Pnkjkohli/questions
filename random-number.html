@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mouseover Element</title>
-  <link rel="stylesheet" href="index.css">
+  <title>Random Number
+  </title>
+  <link rel="stylesheet" href="./index.css">
   
 
 </head>
@@ -13,8 +14,9 @@
     <aside class="search-wrap">
       <div class="search">
         <label for="search">
-        
-           <h3>Mouseover Element</h3>
+      
+           <h3>Random Number
+          </h3>
         </label>
       </div>
       
@@ -33,73 +35,21 @@
 
 
     <div class="task">
-
-      <canvas id="canvas-for-ball" width="700" height="340" style="border:1px solid"></canvas>
-
-
+      <button id="btn" style="padding:10px 20px;">Generate a Random Number</button>
+      <h1 class="text"></h1>
     </div>
-  </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>		
     <script src="include-html.min.js"></script>
 
     <script>
-
-var canvas = document.getElementById("canvas-for-ball");
-var ctx = canvas.getContext("2d");
-
-class Ball {
-  constructor(x, y, r, xVel, yVel) {
-    this.x = x
-    this.y = y
-    this.r = r
-    this.xVel = xVel
-    this.yVel = yVel
-  }
-
-  draw() {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
-    ctx.stroke();
-
-    // Update the location.
-    this.x += this.xVel;
-    this.y += this.yVel;
-
-    // ball hits wall then bounce back 
-    if ((this.x > canvas.width - this.r) || (this.x < this.r)) {
-      this.xVel *= -1;
-    }
-    if ((this.y > canvas.height - this.r) || (this.y < this.r)) {
-      this.yVel *= -1;
-    }
-  }
-}
-
-balls = []
-balls.push(new Ball(45, 10, 7, 1, 1))
-balls.push(new Ball(9, 4, 3, -2, -2))
-balls.push(new Ball(50, 20, 14, 0.5, 0.5))
-
-function repeatme() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height)
-  balls.forEach(ball => ball.draw());
-  window.requestAnimationFrame(repeatme);
-  
-}
-
-repeatme();
+      var btn = document.getElementById('btn').addEventListener('click', function(){
+        var text = document.getElementsByClassName('text')[0];
+        text.innerHTML = Math.random()* 100;
+      })
+     
     </script>
-   
 </body>
 </html>
-
-
-
-
-
-
-
-
 
 

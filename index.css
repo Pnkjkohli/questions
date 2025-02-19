@@ -137,6 +137,7 @@ body {
   display: block;
   padding: 0;
   margin: 0;
+  width: 200px;
 }
 .menu-wrap nav li {
   display: block;
@@ -208,10 +209,13 @@ div.dt-container div.dt-layout-row {
   margin: 30px;
   padding: 40px;
   text-align: center;
+  
 }
 .questions{
   grid-area: content;
 }
+
+/* mouse event (canvas)  */
 canvas{
   position: absolute;
   right: 10%;
@@ -220,4 +224,10 @@ canvas{
   background-color: #00d4ff;
 }
 
-
+.menu-wrap nav section {
+display: block;
+/* padding: 3em 0 0; */
+padding: 0px;
+height: 315px;
+overflow: scroll;
+}

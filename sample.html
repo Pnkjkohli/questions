@@ -6,9 +6,44 @@
   <title>Mouseover Element</title>
   <link rel="stylesheet" href="index.css">
   
-
 </head>
 <body>
+  <style type="text/css">
+  
+  #container {
+
+width: 300px;
+
+height: 300px;
+
+border: 1px solid black;
+
+position: relative; /* Necessary to position child absolutely within it */ 
+
+}
+
+
+
+#circle {
+
+width: 50px;
+
+height: 50px;
+
+border-radius: 50%; /* Creates a circle shape */
+
+background-color: blue;
+
+position: absolute; /* Allow for precise positioning within the container */
+
+top: 50px;
+
+left: 50px; /* Initial position of the circle */
+
+}
+
+   </style>
+
   <div class="dashboard">
     <aside class="search-wrap">
       <div class="search">
@@ -32,9 +67,12 @@
     </div>
 
 
-    <div class="task">
+ 
+<div id="container">
 
-      <canvas id="canvas-for-ball" width="700" height="340" style="border:1px solid"></canvas>
+  <div id="circle"></div>
+
+</div>
 
 
     </div>
@@ -44,52 +82,71 @@
     <script src="include-html.min.js"></script>
 
     <script>
+    
+    const circle = document.getElementById('circle');
 
-var canvas = document.getElementById("canvas-for-ball");
-var ctx = canvas.getContext("2d");
+const container = document.getElementById('container');
 
-class Ball {
-  constructor(x, y, r, xVel, yVel) {
-    this.x = x
-    this.y = y
-    this.r = r
-    this.xVel = xVel
-    this.yVel = yVel
+
+
+let isDragging = false;
+
+let startX, startY;
+
+
+
+container.addEventListener('mousedown', (event) => {
+
+  if (event.target === circle) {
+
+    isDragging = true;
+
+    startX = event.clientX - circle.offsetLeft;
+
+    startY = event.clientY - circle.offsetTop;
+
   }
 
-  draw() {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
-    ctx.stroke();
+});
 
-    // Update the location.
-    this.x += this.xVel;
-    this.y += this.yVel;
 
-    // ball hits wall then bounce back 
-    if ((this.x > canvas.width - this.r) || (this.x < this.r)) {
-      this.xVel *= -1;
-    }
-    if ((this.y > canvas.height - this.r) || (this.y < this.r)) {
-      this.yVel *= -1;
-    }
+
+document.addEventListener('mousemove', (event) => {
+
+  if (isDragging) {
+
+    let newX = event.clientX - startX;
+
+    let newY = event.clientY - startY;
+
+
+
+    // Check if the circle is going out of bounds and adjust if needed
+
+    newX = Math.max(0, Math.min(newX, container.offsetWidth - circle.offsetWidth));
+
+    newY = Math.max(0, Math.min(newY, container.offsetHeight - circle.offsetHeight));
+
+
+
+    circle.style.left = newX + 'px';
+
+    circle.style.top = newY + 'px';
+
   }
-}
 
-balls = []
-balls.push(new Ball(45, 10, 7, 1, 1))
-balls.push(new Ball(9, 4, 3, -2, -2))
-balls.push(new Ball(50, 20, 14, 0.5, 0.5))
+});
 
-function repeatme() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height)
-  balls.forEach(ball => ball.draw());
-  window.requestAnimationFrame(repeatme);
-  
-}
 
-repeatme();
-    </script>
+
+document.addEventListener('mouseup', () => {
+
+  isDragging = false;
+
+});
+
+      
+      </script>
    
 </body>
 </html>
