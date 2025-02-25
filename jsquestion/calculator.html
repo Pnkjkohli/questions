@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator
+  </title>
+  <link rel="stylesheet" href="/questions//index.css">
+</head>
+
+<body>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #222;
+    }
+
+    .calculator {
+      /* width: 300px; */
+      padding: 20px;
+      border-radius: 10px;
+      background-color: black;
+      text-align: center;
+      box-shadow: 0px 4px 10px rgba(255, 165, 0, 0.5);
+    }
+
+    .display {
+      width: 100%;
+      height: 60px;
+      background: black;
+      color: white;
+      font-size: 2em;
+      text-align: right;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    button {
+      width: 100%;
+      height: 50px;
+      font-size: 1.5em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      /* background: orange; */
+      color: black;
+      font-weight: bold;
+      /* box-shadow: 0 4px #000; */
+    }
+
+    button:active {
+      box-shadow: 0 2px #000;
+      transform: translateY(2px);
+    }
+
+    .operator {
+      background: rgba(255, 230, 0, 0.813);
+    }
+
+    #equal-to {
+      width: 100%;
+    }
+
+    .last_button {
+      display: grid;
+      grid-template-columns: 24.3% 24% auto;
+    }
+  </style>
+  <div class="dashboard">
+    <aside class="search-wrap">
+      <div class="search">
+        <label for="search">
+          <h3>Calculator
+          </h3>
+        </label>
+      </div>
+      <div class="user-actions">
+        <button>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path
+              d="M13.094 2.085l-1.013-.082a1.082 1.082 0 0 0-.161 0l-1.063.087C6.948 2.652 4 6.053 4 10v3.838l-.948 2.846A1 1 0 0 0 4 18h4.5c0 1.93 1.57 3.5 3.5 3.5s3.5-1.57 3.5-3.5H20a1 1 0 0 0 .889-1.495L20 13.838V10c0-3.94-2.942-7.34-6.906-7.915zM12 19.5c-.841 0-1.5-.659-1.5-1.5h3c0 .841-.659 1.5-1.5 1.5zM5.388 16l.561-1.684A1.03 1.03 0 0 0 6 14v-4c0-2.959 2.211-5.509 5.08-5.923l.921-.074.868.068C15.794 4.497 18 7.046 18 10v4c0 .107.018.214.052.316l.56 1.684H5.388z" />
+          </svg>
+        </button>
+        <button>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path
+              d="M12 21c4.411 0 8-3.589 8-8 0-3.35-2.072-6.221-5-7.411v2.223A6 6 0 0 1 18 13c0 3.309-2.691 6-6 6s-6-2.691-6-6a5.999 5.999 0 0 1 3-5.188V5.589C6.072 6.779 4 9.65 4 13c0 4.411 3.589 8 8 8z" />
+            <path d="M11 2h2v10h-2z" />
+          </svg>
+        </button>
+      </div>
+    </aside>
+    <div include-html="/questions/partial-dashboard-component.html" id="partial-dashboard_file">
+    </div>
+    <div class="task">
+      <div class="calculator">
+        <input type="text" class="display" value="0" id="result" disabled>
+        <div class="buttons">
+          <button class="operator" onclick="clr()">AC</button>
+          <button class="operator" onclick="del()">DEL</button>
+          <button class="operator" onclick="dis('%')">%</button>
+          <button class="operator" onclick="dis('+')">+</button>
+          <button onclick="dis('7')">7</button>
+          <button onclick="dis('8')">8</button>
+          <button onclick="dis('9')">9</button>
+          <button class="operator" onclick="dis('-')">-</button>
+          <button onclick="dis('4')">4</button>
+          <button onclick="dis('5')">5</button>
+          <button onclick="dis('6')">6</button>
+          <button class="operator" onclick="dis('x')">×</button>
+          <button onclick="dis('3')">3</button>
+          <button onclick="dis('2')">2</button>
+          <button onclick="dis('1')">1</button>
+          <button class="operator" onclick="dis('÷')">÷</button>
+        </div>
+        <div class="last_button buttons">
+          <button onclick="dis('0')">0</button>
+          <button onclick="dis('.')">.</button>
+          <button class="operator" onclick="solve()">=</button>
+        </div>
+      </div>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="/questions/include-html.min.js"></script>
+
+    <script>
+
+      function dis(val) {
+        document.getElementById("result").value += val
+      }
+     
+      function solve() {
+        let expression = document.getElementById("result").value;
+        try{
+          
+          var result = eval(expression.replace('x', '*').replace('÷', '/'));
+          document.getElementById("result").value = result;
+
+        } catch(error){
+          document.getElementById("result").value = "Error";
+        }
+       
+      }
+      function clr() {
+        document.getElementById("result").value = "";
+      }
+
+      var display = document.getElementById("result");
+
+      function del() {
+        display.value = display.value.slice(0, -1);
+      }
+
+    </script>
+
+
+</body>
+
+</html>

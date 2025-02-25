@@ -4,10 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Check a Number is Odd or Even
-
+  <title>Factors of a Number
   </title>
-  <link rel="stylesheet" href="./index.css">
+  <link rel="stylesheet" href="/questions/index.css">
 
 
 </head>
@@ -17,9 +16,7 @@
     <aside class="search-wrap">
       <div class="search">
         <label for="search">
-
-          <h3>Check a Number is Odd or Even
-
+          <h3>Factors of a Number
           </h3>
         </label>
       </div>
@@ -41,7 +38,7 @@
       </div>
     </aside>
 
-    <div include-html="partial-dashboard-component.html" id="partial-dashboard_file">
+    <div include-html="/questions/partial-dashboard-component.html" id="partial-dashboard_file">
     </div>
 
 
@@ -49,7 +46,7 @@
 
       <form action="" id="Form">
         <input type="text" placeholder="Enter Number" id="number" style="padding:10px">
-        <button id="btn" style="padding:10px 20px;">Check</button>
+        <button id="btn" style="padding:10px 20px;">Find</button>
       </form>
       <h1 class="text"></h1>
 
@@ -57,7 +54,7 @@
   </div>
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="include-html.min.js"></script>
+  <script src="/questions/include-html.min.js"></script>
 
   <script>
 
@@ -71,38 +68,24 @@
 
 
 
-      var num1 = parseInt(number);
+      var num = parseFloat(number);
 
-      document.getElementById("Form").reset();
-
-      if (!isNaN(num1)) {
-
-       if (num1 % 2 === 0){
-        text.innerHTML = 'Number is Even';
-       }
-       else {
-        text.innerHTML = 'Number is Odd';
-       }
-
-
+      if (!isNaN(num)) {
+        for (let i = 1; i <= num; i++) {
+          // check if number is a factor
+          if (num % i == 0) {
+            text.innerHTML += '<br>'+i;
+          }
+        }
+        
       } else {
         text.innerHTML = 'Please enter valid numbers.';
       }
 
-    }
 
-
-
-
-
-
-    );
+    });
   </script>
 
 </body>
 
 </html>
-
-
-
-<!-- Math.sqrt(x); -->

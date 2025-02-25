@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mouseover Element</title>
+  <link rel="stylesheet" href="/questions/index.css">
+
+</head>
+
+<body>
+  <style type="text/css">
+   .ball {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      position: absolute;
+      box-sizing: border-box;
+    }
+
+    .ball:hover {
+      width: 55px;
+      height: 55px;
+     
+    }
+
+    .task {
+      position: relative;
+      background-color: aqua;
+      width: 93%;
+      height: 90%;
+      overflow: hidden;
+    }
+  </style>
+
+  <div class="dashboard">
+    <aside class="search-wrap">
+      <div class="search">
+        <label for="search">
+
+          <h3>Mouseover Element</h3>
+        </label>
+      </div>
+
+      <div class="user-actions">
+        <button>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path
+              d="M13.094 2.085l-1.013-.082a1.082 1.082 0 0 0-.161 0l-1.063.087C6.948 2.652 4 6.053 4 10v3.838l-.948 2.846A1 1 0 0 0 4 18h4.5c0 1.93 1.57 3.5 3.5 3.5s3.5-1.57 3.5-3.5H20a1 1 0 0 0 .889-1.495L20 13.838V10c0-3.94-2.942-7.34-6.906-7.915zM12 19.5c-.841 0-1.5-.659-1.5-1.5h3c0 .841-.659 1.5-1.5 1.5zM5.388 16l.561-1.684A1.03 1.03 0 0 0 6 14v-4c0-2.959 2.211-5.509 5.08-5.923l.921-.074.868.068C15.794 4.497 18 7.046 18 10v4c0 .107.018.214.052.316l.56 1.684H5.388z" />
+          </svg>
+        </button>
+        <button>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path
+              d="M12 21c4.411 0 8-3.589 8-8 0-3.35-2.072-6.221-5-7.411v2.223A6 6 0 0 1 18 13c0 3.309-2.691 6-6 6s-6-2.691-6-6a5.999 5.999 0 0 1 3-5.188V5.589C6.072 6.779 4 9.65 4 13c0 4.411 3.589 8 8 8z" />
+            <path d="M11 2h2v10h-2z" />
+          </svg>
+        </button>
+      </div>
+    </aside>
+    <div include-html="/questions/partial-dashboard-component.html" id="partial-dashboard_file">
+    </div>
+    <div class="task">
+      <!-- <div class="ball" id="ball"> </div> -->
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="/questions/include-html.min.js"></script>
+  <script>
+    const ballColors = [
+      'red', 'yellow', 'orange', 'green','pink', 'firebrick', 
+      'darkorchid', 'teal', 'pink', 'darkorchid', 'firebrick', 
+      'pink', 'firebrick','green', 'darkorchid', '#ffa50036','#6055572e','#5860552e','#605a552e', 'firebrick', 'darkorchid','#5760552e','#46362737','#d74f4f37','#d7d24f37','#d9d79537',
+      '#ed2e0c37','#0ced1f37','#0ce5ed37','#0c5bed37','#790ced37','#ed0cc437','#ed0c1b37',
+      'darkorchid', 'teal', 'pink', 'darkorchid', 'firebrick','green', 'yellow', 'orange', 'pink', 'firebrick', 'green'
+    ];
+
+    function createBall(id, x, y, color) {
+      let ball = document.createElement('div');
+      ball.classList.add('ball');
+      ball.id = id;
+      ball.style.backgroundColor = color;
+      ball.style.left = `${x}px`;
+      ball.style.top = `${y}px`;
+      document.querySelector('.task').appendChild(ball);
+      return ball;
+    }
+
+    function animateBall(ball) {
+      let posX = parseInt(ball.style.left);
+      let posY = parseInt(ball.style.top);
+      let velocityX = 2;
+      let velocityY = 2;
+      function moveBall() {
+        posX += velocityX;
+        posY += velocityY;
+        if (posX > 880 || posX < 0) {    
+          velocityX *= -1;
+        }
+        if (posY > 540 || posY < 0) {
+          velocityY *= -1;
+        }
+        ball.style.left = `${posX}px`;
+        ball.style.top = `${posY}px`;
+        requestAnimationFrame(moveBall);
+      }
+      moveBall();
+    }
+
+    window.addEventListener('load', function () {
+      for (let i = 0; i < ballColors.length; i++) {
+        let ball = createBall(`ball${i}`, Math.random() * window.innerWidth, Math.random() * window.innerHeight, ballColors[i]);
+        animateBall(ball);
+      }
+    });
+  </script>
+</body>
+</html>
+<!-- rl bt -->
+
+
+
+
+

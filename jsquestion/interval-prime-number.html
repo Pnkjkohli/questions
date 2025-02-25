@@ -1,27 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Check a number is Positive, Negative, or Zero
-  </title>
-  <link rel="stylesheet" href="./index.css">
-
-
+  <title>Print All Prime Numbers in an Interval </title>
+  <link rel="stylesheet" href="/questions/index.css">
 </head>
-
 <body>
   <div class="dashboard">
     <aside class="search-wrap">
       <div class="search">
         <label for="search">
-
-          <h3>Check a number is Positive, Negative, or Zero
+          <h3>Print All Prime Numbers in an Interval
           </h3>
         </label>
       </div>
-
       <div class="user-actions">
         <button>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -38,70 +31,58 @@
         </button>
       </div>
     </aside>
-
-    <div include-html="partial-dashboard-component.html" id="partial-dashboard_file">
+    <div include-html="/questions/partial-dashboard-component.html" id="partial-dashboard_file">
     </div>
-
-
     <div class="task">
-
       <form action="" id="Form">
-        <input type="text" placeholder="Enter Number" id="number" style="padding:10px">
-        <button id="btn" style="padding:10px 20px;">Check</button>
+        <input type="text" placeholder="Enter First Number" id="firstNumber" style="padding:10px">
+        <input type="text" placeholder="Enter Second Number" id="secondNumber" style="padding:10px">
+        <button id="btn" style="padding:10px 20px;">Find</button>
       </form>
-      <h1 class="text"></h1>
-
+      <h1 class="text" id="text"></h1>
     </div>
   </div>
-
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="include-html.min.js"></script>
-
+  <script src="/questions/include-html.min.js"></script>
   <script>
-
     var btn = document.getElementById('btn');
     btn.addEventListener('click', function () {
       event.preventDefault();
-
-
-      var number = document.getElementById('number').value;
+      var firstNumber = document.getElementById('firstNumber').value;
+      var secondNumber = document.getElementById('secondNumber').value;
       var text = document.getElementsByClassName('text')[0];
-
-
-
-      var num1 = parseInt(number);
-
-      document.getElementById("Form").reset();
-
-      if (!isNaN(num1)) {
-
-
-
-      if (num1 === 0) {
-        text.innerHTML = "Number is Zero";
-      } else if (num1 > 0) {
-        text.innerHTML = "Number is Positive";
-      } else {
-        text.innerHTML = "Number is Negative";
+      var num1 = parseFloat(firstNumber);
+      var num2 = parseFloat(secondNumber);
+      // document.getElementById("Form").reset();
+      function isPrime(n) {
+        if (n <= 1)
+          return false;
+        for (var i = 2; i <= Math.sqrt(n); i++) {
+          if (n % i === 0) {
+            return false;
+          }
+        }
+        return true;
       }
-
-       } else {
+      if (!isNaN(num1) && !isNaN(num2)) {
+        if (num1 > num2) {
+          text.innerHTML = 'Please enter the valid range first number should be smaller';
+          return;
+        }
+        var primeNumbers = [];
+        for (var i = num1; i <= num2; i++) {
+          if (isPrime(i)) {
+            primeNumbers.push(i);
+          }
+        } if (primeNumbers.length > 0) {
+          text.innerHTML = 'Prime numbers between ' + num1 + ' and ' + num2 + ': ' + primeNumbers;
+        } else {
+          text.innerHTML = 'No prime numbers found in the given range.';
+        }
+      } else {
         text.innerHTML = 'Please enter valid numbers.';
       }
-
-    }
-
-
-     
-
-
-    );
+    });
   </script>
-
 </body>
-
 </html>
-
-
-
-<!-- Math.sqrt(x); -->

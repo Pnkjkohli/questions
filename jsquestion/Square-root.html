@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Swap Two variables</title>
-  <link rel="stylesheet" href="./index.css">
+  <title>Square Root</title>
+  <link rel="stylesheet" href="/questions/index.css">
   
 
 </head>
@@ -13,8 +13,7 @@
     <aside class="search-wrap">
       <div class="search">
         <label for="search">
-         
-           <h3>Swap Two variables</h3>
+           <h3>Square Root</h3>
         </label>
       </div>
       
@@ -28,16 +27,15 @@
       </div>
     </aside>
 
-    <div include-html="partial-dashboard-component.html" id="partial-dashboard_file">
+    <div include-html="/questions/partial-dashboard-component.html" id="partial-dashboard_file">
     </div>
 
 
     <div class="task">
 
       <form action="" id="Form">
-        <input type="text" placeholder="Enter First Number" id="firstNumber" style="padding:10px">   
-        <input type="text" placeholder="Enter Second Number" id="secondNumber" style="padding:10px">   
-           <button id="btn" style="padding:10px 20px;">swap</button>
+        <input type="text" placeholder="Enter Number" id="number" style="padding:10px">   
+           <button id="btn" style="padding:10px 20px;">Square root</button>
       </form>
           <h1 class="text"></h1>
 
@@ -45,7 +43,7 @@
   </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>		
-    <script src="include-html.min.js"></script>
+    <script src="/questions/include-html.min.js"></script>
 
     <script>
      
@@ -54,28 +52,22 @@
       event.preventDefault();
       
 
-    var firstNumber = document.getElementById('firstNumber').value;
-    var secondNumber = document.getElementById('secondNumber').value;
+    var number = document.getElementById('number').value;
     var text = document.getElementsByClassName('text')[0];
-
-    var num1 = parseFloat(firstNumber);
-    var num2 = parseFloat(secondNumber);
-    text.innerHTML = "first number is: " + num1+" <br>" +" <br>" + "second number is: " + num2 +" <br>";
-   
-    var temp = num1;
-    num1 = num2;
-    num2 = temp;
-
-    const newDiv = document.createElement("span");
-    newDiv.className= "swap";
-    newDiv.innerHTML = " <br>"+" <br>"+"After Swapping, first number is: " + num1+" <br>" +" <br>" + "second number is: " + num2;
-    text.appendChild(newDiv);
-
-});
-
    
 
  
+    var num1 = parseFloat(number);
+    // document.getElementById("Form").reset();
+   
+    if (!isNaN(num1)) {
+      text.innerHTML = 'The Square root  is: ' + Math.sqrt(num1);;
+    } else {
+      text.innerHTML = 'Please enter valid numbers.';
+    }
+   
+
+  });
     </script>
    
 </body>
@@ -83,7 +75,7 @@
 
 
 
- 
+
 
 
 
