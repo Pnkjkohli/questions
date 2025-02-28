@@ -56,22 +56,17 @@
       var text = document.getElementsByClassName('text')[0];
       var num1 = parseFloat(firstNumber);
       var num2 = parseFloat(secondNumber);
-      // document.getElementById("Form").reset();
-      if (!isNaN(num1) && !isNaN(num2)) { // 4 and 3 
-        console.log(num1, num2);
-        let min = num1 > num2 ? num1 : num2;  // min = 12
-        console.log(num1, num2, min);
+      if (!isNaN(num1) && !isNaN(num2)) { 
+        let min = (num1 > num2) ? num1 : num2;
+      
         while (true) {
           if (min % num1 == 0 && min % num2 == 0) { 
-            console.log(min);
-            // debugger
             text.innerHTML = 'The LCM of ' + num1+ ' and ' + num2 + ' is: ' +  min;
             
             break;
           }
           min++;
         }
-
       } else {
         text.innerHTML = 'Please enter valid numbers.';
       }

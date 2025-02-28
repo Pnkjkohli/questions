@@ -4,11 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sum of Natural Numbers Using Recursion
+  <title>Find ASCII Value of Character
   </title>
   <link rel="stylesheet" href="/questions/index.css">
-
-
 </head>
 
 <body>
@@ -16,11 +14,10 @@
     <aside class="search-wrap">
       <div class="search">
         <label for="search">
-          <h3>Sum of Natural Numbers Using Recursion
+          <h3>Find ASCII Value of Character
           </h3>
         </label>
       </div>
-
       <div class="user-actions">
         <button>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -37,59 +34,35 @@
         </button>
       </div>
     </aside>
-
     <div include-html="/questions/partial-dashboard-component.html" id="partial-dashboard_file">
     </div>
-
-
     <div class="task">
-
       <form action="" id="Form">
-        <input type="text" placeholder="Enter Number" id="number" style="padding:10px">
-        <button id="btn" style="padding:10px 20px;">Find Sum</button>
+        <input type="text" placeholder="Enter Character" id="number" style="padding:10px">
+        <button id="btn" style="padding:10px 20px;">Find</button>
       </form>
       <h1 class="text"></h1>
-
     </div>
   </div>
-
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="/questions/include-html.min.js"></script>
-
   <script>
-
     var btn = document.getElementById('btn');
-    btn.addEventListener('click', function () {
+    btn.addEventListener('click', function (event) {
       event.preventDefault();
-
-
       var number = document.getElementById('number').value;
       var text = document.getElementsByClassName('text')[0];
-
-
-
-      var num = parseFloat(number);
-
-      if (!isNaN(num)) {
+      
+      var index = 0;
+      var ch = number.charAt(index);
        
-
-        function sum(num) {
-          if (num > 0) {
-            return num + sum(num - 1);
-          }
-          else {
-            return num;
-          }
-        }
-        text.innerHTML = sum(num);
-
-
-      } else {
-        text.innerHTML = 'Please enter valid numbers.';
-      }
+        var asciiChar = ch.charCodeAt(0);
+        text.textContent = "The ASCII character is: " + asciiChar;
+     
     });
   </script>
 
+  
 </body>
 
 </html>

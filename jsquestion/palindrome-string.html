@@ -4,11 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sum of Natural Numbers Using Recursion
+  <title>Check Whether a String is Palindrome or Not
   </title>
   <link rel="stylesheet" href="/questions/index.css">
-
-
 </head>
 
 <body>
@@ -16,11 +14,10 @@
     <aside class="search-wrap">
       <div class="search">
         <label for="search">
-          <h3>Sum of Natural Numbers Using Recursion
+          <h3>Check Whether a String is Palindrome or Not
           </h3>
         </label>
       </div>
-
       <div class="user-actions">
         <button>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -37,59 +34,44 @@
         </button>
       </div>
     </aside>
-
     <div include-html="/questions/partial-dashboard-component.html" id="partial-dashboard_file">
     </div>
-
-
     <div class="task">
-
       <form action="" id="Form">
-        <input type="text" placeholder="Enter Number" id="number" style="padding:10px">
-        <button id="btn" style="padding:10px 20px;">Find Sum</button>
+        <input type="text" placeholder="Enter String" id="number" style="padding:10px">
+        <button id="btn" style="padding:10px 20px;">Check</button>
       </form>
       <h1 class="text"></h1>
-
     </div>
   </div>
-
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="/questions/include-html.min.js"></script>
-
   <script>
-
     var btn = document.getElementById('btn');
     btn.addEventListener('click', function () {
       event.preventDefault();
-
-
-      var number = document.getElementById('number').value;
+      var char = document.getElementById('number').value;
       var text = document.getElementsByClassName('text')[0];
 
+      if (!isNaN(char)) {
+        text.innerHTML = 'Please enter a valid String';
+      } else {
+        var palindrome = checkPalindrome(char);
+        text.innerHTML = 'string'+checkPalindrome(char);
+      }
 
-
-      var num = parseFloat(number);
-
-      if (!isNaN(num)) {
-       
-
-        function sum(num) {
-          if (num > 0) {
-            return num + sum(num - 1);
-          }
-          else {
-            return num;
+      function checkPalindrome(char) {
+        const len = char.length;
+        for (let i = 0; i < len / 2; i++) {
+          if (char[i] !== char[len - 1 - i]) {
+            return ' is not a palindrome';
           }
         }
-        text.innerHTML = sum(num);
-
-
-      } else {
-        text.innerHTML = 'Please enter valid numbers.';
+        return ' is a palindrome  ';
       }
     });
-  </script>
 
+  </script>
 </body>
 
 </html>

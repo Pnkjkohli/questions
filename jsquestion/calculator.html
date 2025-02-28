@@ -144,6 +144,8 @@
      
       function solve() {
         let expression = document.getElementById("result").value;
+        expression = expression.replace(/\b0+(\d)/g, '$1');
+        
         try{
           
           var result = eval(expression.replace('x', '*').replace('÷', '/'));

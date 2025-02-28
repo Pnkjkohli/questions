@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shuffle Deck of Cards
+
+  </title>
+  <link rel="stylesheet" href="/questions/index.css">
+</head>
+
+<body>
+  <style>
+    .display_block {
+      display: flex;
+      flex-direction: row;
+      gap: 25px;
+      justify-content: center;
+      margin-top: 50px;     
+    }
+
+   .fade {
+    opacity: 0;
+    transform: rotateY(360deg);
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+
+}
+
+.fade.visible {
+    opacity: 1;
+    transform: rotatex(30deg);
+  
+
+}
+
+
+
+  </style>
+  <div class="dashboard">
+    <aside class="search-wrap">
+      <div class="search">
+        <label for="search">
+          <h3>Shuffle Deck of Cards
+
+          </h3>
+        </label>
+      </div>
+      <div class="user-actions">
+        <button>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path
+              d="M13.094 2.085l-1.013-.082a1.082 1.082 0 0 0-.161 0l-1.063.087C6.948 2.652 4 6.053 4 10v3.838l-.948 2.846A1 1 0 0 0 4 18h4.5c0 1.93 1.57 3.5 3.5 3.5s3.5-1.57 3.5-3.5H20a1 1 0 0 0 .889-1.495L20 13.838V10c0-3.94-2.942-7.34-6.906-7.915zM12 19.5c-.841 0-1.5-.659-1.5-1.5h3c0 .841-.659 1.5-1.5 1.5zM5.388 16l.561-1.684A1.03 1.03 0 0 0 6 14v-4c0-2.959 2.211-5.509 5.08-5.923l.921-.074.868.068C15.794 4.497 18 7.046 18 10v4c0 .107.018.214.052.316l.56 1.684H5.388z" />
+          </svg>
+        </button>
+        <button>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path
+              d="M12 21c4.411 0 8-3.589 8-8 0-3.35-2.072-6.221-5-7.411v2.223A6 6 0 0 1 18 13c0 3.309-2.691 6-6 6s-6-2.691-6-6a5.999 5.999 0 0 1 3-5.188V5.589C6.072 6.779 4 9.65 4 13c0 4.411 3.589 8 8 8z" />
+            <path d="M11 2h2v10h-2z" />
+          </svg>
+        </button>
+      </div>
+    </aside>
+    <div include-html="/questions/partial-dashboard-component.html" id="partial-dashboard_file">
+    </div>
+    <div class="task">
+
+
+      <button id="btn" style="padding:10px 20px;">Shuffle Deck of Cards</button>
+      <div class="display_block">
+        
+        <img id="image1" class="fade" style="display: block; margin-top: 20px; width: 100px;
+        height: 150px;" />
+        <img id="image2"  class="fade" style="display: block; margin-top: 20px; width: 100px;
+        height: 150px;" />
+        <img id="image3" class="fade" style="display: block; margin-top: 20px; width: 100px;
+        height: 150px;" />
+        <img id="image4" class="fade" style="display: block; margin-top: 20px; width: 100px;
+        height: 150px;" />
+        <img id="image5" class="fade" style="display: block; margin-top: 20px; width: 100px;
+        height: 150px;" />
+        <img id="image6" class="fade" style="display: block; margin-top: 20px; width: 100px;
+        height: 150px;" />
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="/questions/include-html.min.js"></script>
+  <script>
+    var btn = document.getElementById('btn');
+    btn.addEventListener('click', function () {
+
+
+
+      var imageElement1 = document.getElementById('image1');
+      var imageElement2 = document.getElementById('image2');
+      var imageElement3 = document.getElementById('image3');
+      var imageElement4 = document.getElementById('image4');
+      var imageElement5 = document.getElementById('image5');
+      var imageElement6 = document.getElementById('image6');
+      var imageArray = [
+        'clubs_2.png', 'clubs_3.png', 'clubs_4.png', 'clubs_5.png', 'clubs_6.png', 'clubs_7.png', 'clubs_8.png', 'clubs_9.png', 'clubs_10.png',
+        'clubs_A.png', 'clubs_J.png', 'clubs_K.png','clubs_Q.png', 'diamonds_2.png', 'diamonds_3.png', 'diamonds_4.png', 'diamonds_5.png', 'diamonds_6.png', 'diamonds_7.png', 'diamonds_8.png','diamonds_9.png',
+        'diamonds_10.png','diamonds_A.png','diamonds_J.png','diamonds_K.png','diamonds_Q.png','hearts_2.png','hearts_3.png','hearts_4.png','hearts_5.png','hearts_6.png'
+        ,'hearts_7.png','hearts_8.png','hearts_9.png','hearts_10.png','hearts_A.png','hearts_J.png','hearts_K.png'
+        ,'hearts_Q.png','spades_2.png','spades_3.png','spades_4.png','spades_5.png','spades_6.png','spades_7.png','spades_8.png','spades_9.png','spades_10.png','spades_A.png','spades_J.png','spades_K.png'
+        ,'spades_Q.png'
+      ];
+
+      var array= imageArray;
+      var randomImage1 = imageArray[Math.floor(Math.random() * imageArray.length)];
+      var randomImage2 = imageArray[Math.floor(Math.random() * imageArray.length)];
+      var randomImage3 = imageArray[Math.floor(Math.random() * imageArray.length)];
+      var randomImage4 = imageArray[Math.floor(Math.random() * imageArray.length)];
+      var randomImage5 = imageArray[Math.floor(Math.random() * imageArray.length)];
+      var randomImage6 = imageArray[Math.floor(Math.random() * imageArray.length)];
+      imageElement1.src = '/questions/jsquestion/cards/' + randomImage1;
+      imageElement2.src = '/questions/jsquestion/cards/' + randomImage2;
+      imageElement3.src = '/questions/jsquestion/cards/' + randomImage3;
+      imageElement4.src = '/questions/jsquestion/cards/' + randomImage4;
+      imageElement5.src = '/questions/jsquestion/cards/' + randomImage5;
+      imageElement6.src = '/questions/jsquestion/cards/' + randomImage6;
+
+
+          // Initially set images to invisible
+    imageElement1.classList.remove('visible');
+    imageElement2.classList.remove('visible');
+    imageElement3.classList.remove('visible');
+    imageElement4.classList.remove('visible');
+    imageElement5.classList.remove('visible');
+    imageElement6.classList.remove('visible');
+
+
+        // Use setTimeout to add the 'visible' class after a delay to trigger the fade-in
+        setTimeout(function () {
+        imageElement1.classList.add('visible');
+    }, 600);
+
+    setTimeout(function () {
+        imageElement2.classList.add('visible');
+    }, 600);
+
+    setTimeout(function () {
+        imageElement3.classList.add('visible');
+    }, 600);
+    setTimeout(function () {
+        imageElement4.classList.add('visible');
+    }, 600);
+    setTimeout(function () {
+        imageElement5.classList.add('visible');
+    }, 600);
+    setTimeout(function () {
+        imageElement6.classList.add('visible');
+    }, 600);
+
+    }
+    );
+  </script>
+</body>
+
+</html>

@@ -61,12 +61,13 @@
     var btn = document.getElementById('btn');
     btn.addEventListener('click', function () {
       event.preventDefault();
+     
 
 
       var number = document.getElementById('number').value;
       var text = document.getElementsByClassName('text')[0];
 
-
+      document.getElementById("Form").reset();
 
       var num = parseFloat(number);
 
@@ -74,7 +75,7 @@
         for (let i = 1; i <= num; i++) {
           // check if number is a factor
           if (num % i == 0) {
-            text.innerHTML += '<br>'+i;
+            text.innerHTML +='<br>'+i;
           }
         }
         
