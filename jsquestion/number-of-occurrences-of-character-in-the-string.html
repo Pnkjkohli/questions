@@ -4,9 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Sort Words in Alphabetical Order
+  <title>Check the Number of Occurrences of a Character in the String
   </title>
   <link rel="stylesheet" href="/questions/index.css">
+
+
 </head>
 
 <body>
@@ -14,10 +16,11 @@
     <aside class="search-wrap">
       <div class="search">
         <label for="search">
-          <h3> Sort Words in Alphabetical Order
+          <h3>Check the Number of Occurrences of a Character in the String
           </h3>
         </label>
       </div>
+
       <div class="user-actions">
         <button>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -34,38 +37,78 @@
         </button>
       </div>
     </aside>
+
     <div include-html="/questions/partial-dashboard-component.html" id="partial-dashboard_file">
     </div>
+
+
     <div class="task">
+
       <form action="" id="Form">
-        <input type="text" placeholder="Enter String" id="number" style="padding:10px">
-        <button id="btn" style="padding:10px 20px;">Shorting</button>
+        <input type="text" placeholder="Enter String" id="string" style="padding:10px; width: 50%;">
+        <button id="btn" style="padding:10px 20px;">Enter</button>
       </form>
-      <h1 class="text"></h1>
+      <h1 class="text" id="check"></h1>
+
     </div>
   </div>
+
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="/questions/include-html.min.js"></script>
+
   <script>
     var btn = document.getElementById('btn');
     btn.addEventListener('click', function (event) {
       event.preventDefault();
-      var char = document.getElementById('number').value;
+  
+      var string = document.getElementById('string').value;
       var text = document.getElementsByClassName('text')[0];
-
-      if (/^[A-Za-z]+$/.test(char)) {
-        text.innerHTML = 'Result: ' + sortWords(char);
+  
+      if (isNaN(string)) {
+        text.innerHTML = 'String is: ' + string + ' <br>';
+  
+        // Create new input field to check the character
+        var newInput = document.createElement("input");
+        newInput.type = "text";
+        newInput.placeholder = "Character to check";
+        newInput.style.padding = "10px";
+        newInput.style.width = "50%";
+        document.getElementById('check').appendChild(newInput);
+  
+        // Create the button to trigger the count function
+        var newBtn = document.createElement("button");
+        newBtn.type = "button";
+        newBtn.innerText = "Enter";
+        newBtn.style.padding = "10px 20px";
+        newBtn.style.marginLeft = "5px";
+        document.getElementById('check').appendChild(newBtn);
+  
+        // Add click event to the new button
+        newBtn.addEventListener('click', function () {
+          var letterToCheck = newInput.value;
+          if (letterToCheck) {
+            text.innerHTML = countString(string, letterToCheck);
+          } else {
+            text.innerHTML = 'Please enter a character to check.';
+          }
+        });
+  
       } else {
-        text.innerHTML = 'Enter A Valid Character or not spacing between them';
-      }
-
-      function sortWords(a) {
-        let output = a.split('').sort().join('');
-        return output;
+        text.innerHTML = 'Please enter a valid input (a string, not a number).';
       }
     });
+  
+    function countString(str, letter) {
+      let count = 0;
+      for (let i = 0; i < str.length; i++) {
+        if (str.charAt(i) == letter) {
+          count += 1;
+        }
+      }
+      return `The character '${letter}' appears ${count} times in the string.`;
+    }
   </script>
-
+  
 </body>
 
 </html>

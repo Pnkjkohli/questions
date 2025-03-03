@@ -4,9 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Sort Words in Alphabetical Order
+  <title>Convert the First Letter of a String into UpperCase
   </title>
   <link rel="stylesheet" href="/questions/index.css">
+
+
 </head>
 
 <body>
@@ -14,10 +16,11 @@
     <aside class="search-wrap">
       <div class="search">
         <label for="search">
-          <h3> Sort Words in Alphabetical Order
+          <h3>Convert the First Letter of a String into UpperCase
           </h3>
         </label>
       </div>
+
       <div class="user-actions">
         <button>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -34,36 +37,47 @@
         </button>
       </div>
     </aside>
+
     <div include-html="/questions/partial-dashboard-component.html" id="partial-dashboard_file">
     </div>
+
+
     <div class="task">
+
       <form action="" id="Form">
-        <input type="text" placeholder="Enter String" id="number" style="padding:10px">
-        <button id="btn" style="padding:10px 20px;">Shorting</button>
+        <input type="text" placeholder="Enter String" id="string" style="padding:10px; width: 50%;">
+        <button id="btn" style="padding:10px 20px;">Enter</button>
       </form>
-      <h1 class="text"></h1>
+      <h1 class="text" id="check"></h1>
+
     </div>
   </div>
+
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="/questions/include-html.min.js"></script>
+
   <script>
     var btn = document.getElementById('btn');
     btn.addEventListener('click', function (event) {
       event.preventDefault();
-      var char = document.getElementById('number').value;
+
+      var string = document.getElementById('string').value;
       var text = document.getElementsByClassName('text')[0];
 
-      if (/^[A-Za-z]+$/.test(char)) {
-        text.innerHTML = 'Result: ' + sortWords(char);
-      } else {
-        text.innerHTML = 'Enter A Valid Character or not spacing between them';
-      }
 
-      function sortWords(a) {
-        let output = a.split('').sort().join('');
-        return output;
+
+
+      if (/^[A-Za-z]+$/.test(string)) {
+        text.innerHTML = capitalizeFirstLetter(string);
+      } else {
+        text.innerHTML = 'Please enter only characters';
       }
     });
+
+    function capitalizeFirstLetter(str) {
+      const capitalized = str.charAt(0).toUpperCase() + str.slice(1);
+      return capitalized;
+    }
   </script>
 
 </body>

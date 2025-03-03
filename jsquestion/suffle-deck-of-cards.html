@@ -99,6 +99,7 @@
       var imageElement4 = document.getElementById('image4');
       var imageElement5 = document.getElementById('image5');
       var imageElement6 = document.getElementById('image6');
+
       var imageArray = [
         'clubs_2.png', 'clubs_3.png', 'clubs_4.png', 'clubs_5.png', 'clubs_6.png', 'clubs_7.png', 'clubs_8.png', 'clubs_9.png', 'clubs_10.png',
         'clubs_A.png', 'clubs_J.png', 'clubs_K.png','clubs_Q.png', 'diamonds_2.png', 'diamonds_3.png', 'diamonds_4.png', 'diamonds_5.png', 'diamonds_6.png', 'diamonds_7.png', 'diamonds_8.png','diamonds_9.png',
@@ -115,6 +116,7 @@
       var randomImage4 = imageArray[Math.floor(Math.random() * imageArray.length)];
       var randomImage5 = imageArray[Math.floor(Math.random() * imageArray.length)];
       var randomImage6 = imageArray[Math.floor(Math.random() * imageArray.length)];
+      
       imageElement1.src = '/questions/jsquestion/cards/' + randomImage1;
       imageElement2.src = '/questions/jsquestion/cards/' + randomImage2;
       imageElement3.src = '/questions/jsquestion/cards/' + randomImage3;

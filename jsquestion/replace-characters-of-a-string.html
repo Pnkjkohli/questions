@@ -4,9 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Sort Words in Alphabetical Order
+  <title>Replace Characters of a String
   </title>
   <link rel="stylesheet" href="/questions/index.css">
+
+
 </head>
 
 <body>
@@ -14,10 +16,11 @@
     <aside class="search-wrap">
       <div class="search">
         <label for="search">
-          <h3> Sort Words in Alphabetical Order
+          <h3>Replace Characters of a String
           </h3>
         </label>
       </div>
+
       <div class="user-actions">
         <button>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -34,36 +37,79 @@
         </button>
       </div>
     </aside>
+
     <div include-html="/questions/partial-dashboard-component.html" id="partial-dashboard_file">
     </div>
+
+
     <div class="task">
+
       <form action="" id="Form">
-        <input type="text" placeholder="Enter String" id="number" style="padding:10px">
-        <button id="btn" style="padding:10px 20px;">Shorting</button>
+        <input type="text" placeholder="Enter String" id="string" style="padding:10px; width: 50%;">
+        <button id="btn" style="padding:10px 20px;">Enter</button>
       </form>
-      <h1 class="text"></h1>
+      <h1 class="text" id="replace"></h1>
+
     </div>
   </div>
+
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="/questions/include-html.min.js"></script>
+
   <script>
+
     var btn = document.getElementById('btn');
-    btn.addEventListener('click', function (event) {
+    btn.addEventListener('click', function () {
       event.preventDefault();
-      var char = document.getElementById('number').value;
+
+
+      var string = document.getElementById('string').value;
       var text = document.getElementsByClassName('text')[0];
 
-      if (/^[A-Za-z]+$/.test(char)) {
-        text.innerHTML = 'Result: ' + sortWords(char);
-      } else {
-        text.innerHTML = 'Enter A Valid Character or not spacing between them';
-      }
 
-      function sortWords(a) {
-        let output = a.split('').sort().join('');
-        return output;
+      if (isNaN(string)) {
+
+        text.innerHTML = 'String is: ' + string + ' <br> ';
+
+        var newInput = document.createElement("input");
+        newInput.type = "text";
+        newInput.placeholder = "character who want to replace, replace value";
+        newInput.style.padding = "10px";
+        newInput.style.width = "50%";
+        document.getElementById('replace').appendChild(newInput);
+
+        var newBtn = document.createElement("button");
+        newBtn.type = "button";
+        newBtn.innerText = "Enter";
+        newBtn.style.padding = "10px 20px";
+        newBtn.style.marginLeft = "5px";
+        document.getElementById('replace').appendChild(newBtn);
+
+        newBtn.addEventListener('click', function () {
+          var replacementValues = newInput.value.split(",");
+          if (replacementValues.length === 2) {
+            var oldChar = replacementValues[0].trim();
+            var newChar = replacementValues[1].trim();
+
+
+            var updatedString = string.split(oldChar).join(newChar);
+
+
+            text.innerHTML = 'Updated string: ' + updatedString;
+
+
+          } else {
+            text.innerHTML = 'Please enter the replacement values in correct format (old_char, new_char).';
+          }
+        });
+
+
+      } else {
+        text.innerHTML = 'Please enter valid input (a string, not a number).';
       }
     });
+
+
   </script>
 
 </body>

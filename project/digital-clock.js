@@ -1,5 +1,8 @@
 function updateTime() {
   let now = new Date();
+//   const words = now.split(' ');
+  
+// console.log(words);
   let hours = now.getHours().toString().padStart(2, '0');
   let minutes = now.getMinutes().toString().padStart(2, '0');
   let seconds = now.getSeconds().toString().padStart(2, '0');
@@ -20,7 +23,7 @@ function updateTime() {
   document.getElementById("24h").textContent = hours + ":" + minutes + ':' + seconds;
 
 }
-setInterval(updateTime, 1000);
+setInterval(updateTime, 1000);  
 updateTime();
 document.getElementById('timeButton').addEventListener('click', function () {
   const time24h = document.getElementById('24h');

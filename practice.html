@@ -77,11 +77,11 @@
                 </div> 
                 <div class="d-flex justify-content-between w-100">
                     <h1 class="pb-2  mx-3 text-body-secondary ">
-                            34. Alphabetical Order   
+                           37. Create Object In Different Ways
                         </h1>
                         <div class="preIcon d-flex align-items-center  gap-3">
                        
-                                <a href="./task33.html">
+                                <a href="./task36.html">
                                     <button class="btn btn-success text-white">
                                             <span> 👈🏻 </span>
                                             <!-- <span> ◀ </span> -->
@@ -95,7 +95,7 @@
                                     </button>
                                 </a>
         
-                                <a href="./task35.html">
+                                <a href="./task38.html">
                                     <button class="btn btn-success text-white">
                                         Next
                                         <span>👉🏻</span>
@@ -108,20 +108,7 @@
 
  
     <div class="d-flex flex-row g-2 opacityHam ">
-            <div class="d-flex flex-column align-items-center  rounded-start bg-warning-subtle w-75 gap-3 overflow-scroll border border-success p-4  mb-2 border-opacity-25">
-                <div class="d-flex flex-column gap-3 align-items-center w-75">
-                    <h1 class="mb-4">
-                    <i class="icon ion-md-football"></i>
-                    Lets Play 
-                </h1>
-                <input placeholder="Word" type="text" id="num1" class="px-3 py-1 rounded w-100"/>
-                <button onclick="getSorting()" id="outputBtn" class="rounded p-2 w-100">Sorting</button>
 
-                <textarea class="overflow-scroll pt-2 resultContainer rounded p-2 bg-success text-white d-none" id="result" disabled>
-                        Result:
-                    </textarea>
-                </div>
-            </div>
 
             <div class="code_img text-nowrap overflow-scroll rounded-end w-100 border-2 bg-warning border-success p-4 mb-2 border-opacity-25" id="border-ham ">
                     <div class=" text-nowrap d-flex text-center mx-4 gap-3">
@@ -129,7 +116,7 @@
                     <img width="40px" height="40px" src="../coder.jpg" class="rounded"/>
                     </div>
                     <div class="d-flex codeImg">
-                        <img src="../images/34.png"/>
+                        <img src="../images/37.png"/>
                     </div>
                             </div>
     </div>
@@ -138,55 +125,24 @@
     <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
     
     <script>
-           $(document).ready(function(){
-                $("#num1").click(function(){
-                    $("#result").slideUp(6000);
-                    $("#result").addClass("d-none");
-                });
-            });     
-  
-           $(document).ready(function(){
-                $("#outputBtn").click(function(){
-                    $("#result").removeClass("d-none");
-                    $("#result").slideDown(6000);
-                });
-            });     
+        // 1st way
+function myName(name){
+console.log( `my name is ${name}`)
+return `my name is ${name}`
+}
+// myName("ritu");
 
-            $(document).ready(function(){
-                $("#close").click(function(){
-                    $("#hamburger").hide();
-                    $("#hamburgerOpen").show();
-                    $(".opacityHam").css('opacity','1');
-                    $("#border-ham").removeClass('border-white');
-                    $("body").removeClass('bg-warning');
-                });
-            });
+myName=function(name){
+    console.log( `my name is ${name}`)
+} 
 
-            $(document).ready(function(){
-                $("#hamburgerOpen").click(function(){
-                    $("#hamburger").slideToggle("slow");
-                    $("#hamburger").show();
-                    $("#hamburgerOpen").hide();
-                    $(".opacityHam").css('opacity','0.6');
-                    $("#hamburger").css('opacity','1');
-                    $("#hamburger").css('zIndex','1');
-                    $("#border-ham").addClass('border-white');
-                    $("body").addClass('bg-warning');
-                });
-            });
+const myNames=(name)=>{
+    console.log( `my name is ${name}`)
 
-            function getSorting() {
-                const num1 = document.getElementById("num1").value;
-                const result = document.getElementById("result");
-              if  (/^[A-Za-z]+$/.test(num1)){
-                    result.innerHTML = `Result : ${Palindrome(num1)}`; 
-          }else alert("Enter A Valid Character")
-            };
+}
+myNames("ritu");
 
-            function Palindrome(a) {
-               let output=a.split('').sort().join("");
-                 return output
-            }
+
     </script>
 
 </body>

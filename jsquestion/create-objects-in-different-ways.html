@@ -4,9 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Sort Words in Alphabetical Order
+  <title>Create Objects in Different Ways
   </title>
   <link rel="stylesheet" href="/questions/index.css">
+
+
 </head>
 
 <body>
@@ -14,10 +16,11 @@
     <aside class="search-wrap">
       <div class="search">
         <label for="search">
-          <h3> Sort Words in Alphabetical Order
+          <h3>Create Objects in Different Ways
           </h3>
         </label>
       </div>
+
       <div class="user-actions">
         <button>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -34,37 +37,66 @@
         </button>
       </div>
     </aside>
+
     <div include-html="/questions/partial-dashboard-component.html" id="partial-dashboard_file">
     </div>
+
     <div class="task">
-      <form action="" id="Form">
-        <input type="text" placeholder="Enter String" id="number" style="padding:10px">
-        <button id="btn" style="padding:10px 20px;">Shorting</button>
-      </form>
-      <h1 class="text"></h1>
+
+      <h2>1. Program to create JavaScript object using object literal</h2>
+      <h3 class="text"></h3>
+      <h2>2. Program to Create an Object using Instance of Object Directly</h2>
+      <h3 class="text2"></h3>
+      <!-- <h2>3. program to create JavaScript object using instance of an object</h2>
+      <h3 class="text3"></h3> -->
+
     </div>
   </div>
+
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="/questions/include-html.min.js"></script>
+
   <script>
-    var btn = document.getElementById('btn');
-    btn.addEventListener('click', function (event) {
-      event.preventDefault();
-      var char = document.getElementById('number').value;
-      var text = document.getElementsByClassName('text')[0];
 
-      if (/^[A-Za-z]+$/.test(char)) {
-        text.innerHTML = 'Result: ' + sortWords(char);
-      } else {
-        text.innerHTML = 'Enter A Valid Character or not spacing between them';
+
+    // Program to create JavaScript object using object literal  
+    var text = document.getElementsByClassName('text')[0];
+    const person = {
+      name: 'John',
+      age: 20,
+      hobbies: ['reading', 'games', 'coding'],
+      greet: function () {
+        console.log('Hello everyone.');
+      },
+      score: {
+        maths: 90,
+        science: 80
+      }
+    };
+    text.innerHTML = 'Hobby : ' + person.hobbies[2];
+
+
+
+    // Program to Create an Object using Instance of Object Directly
+    var text2 = document.getElementsByClassName('text2')[0];
+    class Student {
+
+      constructor(data) {
+        this.name = data.name;
       }
 
-      function sortWords(a) {
-        let output = a.split('').sort().join('');
-        return output;
-      }
-    });
+    }
+    
+    const student = new Student({name:'John'});
+    text2.innerHTML = 'Name: ' + student.name;
+
+
+    // program to create JavaScript object using instance of an object
+
+    var text2 = document.getElementsByClassName('text2')[0];
+
   </script>
+
 
 </body>
 
