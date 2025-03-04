@@ -4,43 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guess a Random Number
-
+  <title>Check Whether a String Starts and Ends With Certain Characters
   </title>
   <link rel="stylesheet" href="/questions/index.css">
+
+
 </head>
 
 <body>
-  <style>
-    .display_block {
-      display: flex;
-      flex-direction: row;
-      gap: 35px;
-      justify-content: center;
-      margin-top: 50px;
-    }
-
-    .fade {
-      opacity: 0;
-      transform: rotateY(360deg);
-      transition: opacity 3s ease-in-out, transform 3s ease-in-out;
-    }
-
-    .fade.visible {
-      opacity: 1;
-      transform: rotatex(30deg);
-
-    }
-  </style>
   <div class="dashboard">
     <aside class="search-wrap">
       <div class="search">
         <label for="search">
-          <h3>Guess a Random Number (as per mentor instructions)
-
+          <h3>Check Whether a String Starts and Ends With Certain Characters
           </h3>
         </label>
       </div>
+
       <div class="user-actions">
         <button>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -57,45 +37,62 @@
         </button>
       </div>
     </aside>
+
     <div include-html="/questions/partial-dashboard-component.html" id="partial-dashboard_file">
     </div>
+
+
     <div class="task">
 
+      <form action="" id="Form">
+        <input type="text" placeholder="Enter String" id="string" style="padding:10px; width: 50%;">
+        <button id="btn" style="padding:10px 20px;">Check</button>
+      </form>
+      <h1 class="text" id="check"></h1>
 
-      <button id="btn" style="padding:10px 20px;">Random Number</button>
-      <div class="display_block">
-        <img id="image1" class="fade" style="display: block; margin-top: 20px;" />
-        <img id="image2" class="fade" style="display: block; margin-top: 20px;" />
-        <img id="image3" class="fade" style="display: block; margin-top: 20px;" />
-      </div>
     </div>
   </div>
+
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="/questions/include-html.min.js"></script>
+
   <script>
-    const btn = document.getElementById('btn');
-    const imageElements = Array.from(document.querySelectorAll('.fade'));
-    const imageArray = [
-      '1.png', '2.png', '3.png', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg',
-      '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg'
-    ];
-  
-    btn.addEventListener('click', function () {
-      const randomImages = Array.from({ length: 3 }, () => imageArray[Math.floor(Math.random() * imageArray.length)]);
-  
-      imageElements.forEach((imageElement, index) => {
-        imageElement.src = `/questions/jsquestion/number-pics/${randomImages[index]}`;
-        imageElement.classList.remove('visible');
-      });
-  
-      imageElements.forEach((imageElement, index) => {
-        setTimeout(() => {
-          imageElement.classList.add('visible');
-        },600);
-      });
+    var btn = document.getElementById('btn');
+    btn.addEventListener('click', function (event) {
+      event.preventDefault();
+
+      var string = document.getElementById('string').value;
+      var text = document.getElementsByClassName('text')[0];
+
+
+
+
+      if (string) {
+        var checkstring = checkString(string);
+        text.innerHTML = checkstring;
+      } else {
+        text.innerHTML = 'Please enter only characters';
+      }
     });
+
+    function checkString(str) {
+
+      // check if the string starts with S and ends with G
+      if (str.startsWith('S') && str.endsWith('G')) {
+        return 'The string starts with S and ends with G';
+      }
+      else if (str.startsWith('S')) {
+        return 'The string starts with S but does not end with G';
+      }
+      else if (str.endsWith('G')) {
+        return 'The string starts does not with S but end with G';
+      }
+      else {
+        return 'The string does not start with S and does not end with G';
+      }
+    }
   </script>
-  
+
 </body>
 
 </html>
