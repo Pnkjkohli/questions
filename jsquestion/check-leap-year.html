@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trim a String</title>
+  <title>Check Leap Year
+  </title>
   <link rel="stylesheet" href="/questions/index.css">
 </head>
 
@@ -13,10 +14,10 @@
     <aside class="search-wrap">
       <div class="search">
         <label for="search">
-          <h3>Trim a String</h3>
+          <h3>Check Leap Year
+          </h3>
         </label>
       </div>
-
       <div class="user-actions">
         <button>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -33,37 +34,43 @@
         </button>
       </div>
     </aside>
-    <div include-html="/questions/partial-dashboard-component.html" id="partial-dashboard_file"></div>
-
+    <div include-html="/questions/partial-dashboard-component.html" id="partial-dashboard_file">
+    </div>
     <div class="task">
       <form action="" id="Form">
-        <input type="text" placeholder="Enter String" id="string" style="padding:10px; width: 50%;">
-        <button id="btn" style="padding:10px 20px; margin-top: 10px;">Trim</button>
+        <input type="text" placeholder="Enter Year" id="year" style="padding:10px">
+        <button id="btn" style="padding:10px 20px;">Check</button>
       </form>
-      <h1 class="text" id="check"></h1>
+      <h1 class="text"></h1>
     </div>
   </div>
-
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="/questions/include-html.min.js"></script>
-
   <script>
     var btn = document.getElementById('btn');
-    btn.addEventListener('click', function (event) {
+    btn.addEventListener('click', function () {
       event.preventDefault();
-
-      var string = document.getElementById('string').value;
+      var firstNumber = document.getElementById('year').value;
       var text = document.getElementsByClassName('text')[0];
-
-      if (isNaN(string)) {
-        let trimstring = string.trim();
+      var num1 = parseInt(firstNumber);
+      if (!isNaN(num1)) {
         
-        text.innerHTML = 'String is: ' + trimstring;
 
+        text.innerHTML = checkLeapYear(num1);
       } else {
-        text.innerHTML = 'Please enter valid inputs (strings, not numbers).';
+        text.innerHTML = 'Please enter valid numbers.';
       }
     });
+
+    function checkLeapYear(year) {
+
+      if ((0 == year % 4) && (0 != year % 100) || (0 == year % 400)) {
+       return year + ' is a leap year';
+      } else {
+        return year + ' is not a leap year';
+      }
+    }
+
   </script>
 </body>
 

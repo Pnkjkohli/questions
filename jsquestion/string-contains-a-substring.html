@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trim a String</title>
+  <title>String Contains a Substring</title>
   <link rel="stylesheet" href="/questions/index.css">
 </head>
 
@@ -13,7 +13,8 @@
     <aside class="search-wrap">
       <div class="search">
         <label for="search">
-          <h3>Trim a String</h3>
+          <h3>String Contains a Substring
+          </h3>
         </label>
       </div>
 
@@ -37,8 +38,9 @@
 
     <div class="task">
       <form action="" id="Form">
-        <input type="text" placeholder="Enter String" id="string" style="padding:10px; width: 50%;">
-        <button id="btn" style="padding:10px 20px; margin-top: 10px;">Trim</button>
+        <input type="text" placeholder="Enter a string:" id="string" style="padding:10px; width: 50%;">
+        <input type="text" placeholder="Enter a string that you want to check:" id="prefix" style="padding:10px; width: 50%; margin-top: 10px;">
+        <button id="btn" style="padding:10px 20px; margin-top: 10px;">Check</button>
       </form>
       <h1 class="text" id="check"></h1>
     </div>
@@ -53,13 +55,18 @@
       event.preventDefault();
 
       var string = document.getElementById('string').value;
+      var prefix = document.getElementById('prefix').value;
       var text = document.getElementsByClassName('text')[0];
 
       if (isNaN(string)) {
-        let trimstring = string.trim();
-        
-        text.innerHTML = 'String is: ' + trimstring;
+        text.innerHTML = 'String is: ' + string + ' <br>';
 
+        // Check if the string starts with the prefix
+        if (string.includes(prefix)) {
+          text.innerHTML += `string contains a '${prefix}'.`;
+        } else {
+          text.innerHTML += `The string does not contains a'${prefix}'.`;
+        }
       } else {
         text.innerHTML = 'Please enter valid inputs (strings, not numbers).';
       }

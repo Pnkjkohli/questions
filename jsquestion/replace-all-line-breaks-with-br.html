@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trim a String</title>
+  <title>Replace All Line Breaks with space
+  </title>
   <link rel="stylesheet" href="/questions/index.css">
 </head>
 
@@ -13,7 +14,8 @@
     <aside class="search-wrap">
       <div class="search">
         <label for="search">
-          <h3>Trim a String</h3>
+          <h3>Replace All Line Breaks with space
+          </h3>
         </label>
       </div>
 
@@ -37,8 +39,11 @@
 
     <div class="task">
       <form action="" id="Form">
-        <input type="text" placeholder="Enter String" id="string" style="padding:10px; width: 50%;">
-        <button id="btn" style="padding:10px 20px; margin-top: 10px;">Trim</button>
+         <div class="textarea" style="margin-top: 28px;">
+        <textarea id="string" rows="4" cols="50"></textarea>
+         </div>
+        <button id="btn" style="padding:10px 20px; margin-top: 10px;">Replace
+        </button>
       </form>
       <h1 class="text" id="check"></h1>
     </div>
@@ -55,10 +60,11 @@
       var string = document.getElementById('string').value;
       var text = document.getElementsByClassName('text')[0];
 
+
       if (isNaN(string)) {
-        let trimstring = string.trim();
-        
-        text.innerHTML = 'String is: ' + trimstring;
+
+        const result = string.split('\n').join(' ');
+        text.innerHTML= result;
 
       } else {
         text.innerHTML = 'Please enter valid inputs (strings, not numbers).';
