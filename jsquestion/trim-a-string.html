@@ -4,19 +4,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Check if a Key Exists in an Object</title>
+  <title>Trim a String</title>
   <link rel="stylesheet" href="/questions/index.css">
 </head>
 
 <body>
-
   <div class="dashboard">
     <aside class="search-wrap">
       <div class="search">
         <label for="search">
-          <h3>Check if a Key Exists in an Object</h3>
+          <h3>Trim a String</h3>
         </label>
       </div>
+
       <div class="user-actions">
         <button>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -33,21 +33,14 @@
         </button>
       </div>
     </aside>
-
     <div include-html="/questions/partial-dashboard-component.html" id="partial-dashboard_file"></div>
 
     <div class="task">
-      <h1 class="text" id="check"></h1>
-
-      <div id="object-display">
-        <h4>Student Object:</h4>
-        <pre id="object-content"></pre>
-      </div>
-
       <form action="" id="Form">
-        <input type="text" placeholder="Enter property name to check  exist or not" id="property-name" style="padding:10px; width: 50%;">
-        <button id="btn" style="padding:10px 20px;">Check</button>
+        <input type="text" placeholder="Enter String" id="string" style="padding:10px; width: 50%;">
+        <button id="btn" style="padding:10px 20px; margin-top: 10px;">Trim</button>
       </form>
+      <h1 class="text" id="check"></h1>
     </div>
   </div>
 
@@ -55,46 +48,22 @@
   <script src="/questions/include-html.min.js"></script>
 
   <script>
-    const student = {
-      name: 'John',
-      age: 20,
-      hobbies: ['reading', 'games', 'coding'],
-     
-      score: {
-        maths: 90,
-        science: 80
-      }
-    };
-  
-    function displayObject(obj, elementId) {
-      document.getElementById(elementId).textContent = JSON.stringify(obj, null,2);
-    }
-  
-    displayObject(student, 'object-content');
-  
     var btn = document.getElementById('btn');
     btn.addEventListener('click', function (event) {
       event.preventDefault();
-  
-      var propertyName = document.getElementById('property-name').value;
-      var text = document.getElementById('check');
-        const hasKey = student.hasOwnProperty(propertyName);
-  
-      if (hasKey) {
-        text.innerHTML = `Property "${propertyName}" exists in the student object.`;
+
+      var string = document.getElementById('string').value;
+      var text = document.getElementsByClassName('text')[0];
+
+      if (isNaN(string)) {
+        let trimstring = string.trim();
+        text.innerHTML = 'String is: ' + trimstring;
+
       } else {
-        text.innerHTML = `Property "${propertyName}" does not exist in the student object.`;
+        text.innerHTML = 'Please enter valid inputs (strings, not numbers).';
       }
-  
-      displayObject(student, 'object-content');
     });
   </script>
-  
-
-
-
-
-
 </body>
 
 </html>

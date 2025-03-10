@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Currency Formatter</title>
+  <link rel="stylesheet" href="/questions/index.css">
+</head>
+<body>
+  <div class="dashboard">
+    <aside class="search-wrap">
+      <div class="search">
+        <label for="search">
+          <h3>Format Numbers as Currency</h3>
+        </label>
+      </div>
+    </aside>
+    <div include-html="/questions/partial-dashboard-component.html" id="partial-dashboard_file">
+    </div>
+
+    <div class="task">
+      <form action="" id="Form">
+        <input type="text" placeholder="Enter Number" id="number" style="padding:10px; width: 50%;">
+        <button type="submit" id="btn" style="padding:10px 20px;">Format</button>
+      </form>
+      <h1 class="text" id="formattedCurrency"></h1>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="/questions/include-html.min.js"></script>
+
+  <script>
+    document.getElementById('btn').addEventListener('click', function(event) {
+      event.preventDefault();
+
+      var number = parseFloat(document.getElementById('number').value);
+      var text = document.getElementById('formattedCurrency');
+
+      if (!isNaN(number) && (number > 0)) {
+        // Use Intl.NumberFormat to format the number as a currency string
+        var formattedCurrency = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'INR',
+        }).format(number);
+        text.innerHTML = 'Formatted Currency: ' + formattedCurrency;
+      } else {
+        text.innerHTML = 'Please enter a valid number';
+      }
+    });
+  </script>
+</body>
+</html>

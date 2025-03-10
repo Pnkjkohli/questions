@@ -1,58 +1,83 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../index.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-
-    <title>Lets Pay With JS</title>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Key/Value Pair to an Object</title>
+  <!-- <link rel="stylesheet" href="/questions/index.css"> -->
 </head>
-<body id="bodyContainer" class="bg-lightTheme">
-        <div id="sectionsContainer" class="d-flex flex-column g-2 opacityHam ">
-            <div id="sectionsSubContainer" class="d-flex flex-row g-2 opacityHam ">
-                <div id="UICont" class="w-100 d-none d-flex flex-column align-items-center  rounded-start bg-white w-75 gap-3 overflow-scroll border border-success p-4  mb-2 border-opacity-25 bg-white">
-                    <div id="displayUIContainer" class="bg-lightTheme p-3  h-100 d-flex flex-column gap-3 align-items-center w-75 rounded-3">
-                            <input placeholder="{ a: 1, b: 2, c: 3 }" type="text" id="num1" class="px-3 py-1 rounded w-100" disabled/>
-                            <button onclick="addProp()" id="outputBtn" class="rounded p-2 w-100">Add key</button>
-                    </div>
-                </div>  
+
+<body>
+
+  <div class="dashboard">
+    <aside class="search-wrap">
+      <div class="search">
+        <label for="search">
+          <h3>Add Key/Value Pair to an Object</h3>
+        </label>
+      </div>
+      <div class="user-actions">
+        <button>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path
+              d="M13.094 2.085l-1.013-.082a1.082 1.082 0 0 0-.161 0l-1.063.087C6.948 2.652 4 6.053 4 10v3.838l-.948 2.846A1 1 0 0 0 4 18h4.5c0 1.93 1.57 3.5 3.5 3.5s3.5-1.57 3.5-3.5H20a1 1 0 0 0 .889-1.495L20 13.838V10c0-3.94-2.942-7.34-6.906-7.915zM12 19.5c-.841 0-1.5-.659-1.5-1.5h3c0 .841-.659 1.5-1.5 1.5zM5.388 16l.561-1.684A1.03 1.03 0 0 0 6 14v-4c0-2.959 2.211-5.509 5.08-5.923l.921-.074.868.068C15.794 4.497 18 7.046 18 10v4c0 .107.018.214.052.316l.56 1.684H5.388z" />
+          </svg>
+        </button>
+        <button>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path
+              d="M12 21c4.411 0 8-3.589 8-8 0-3.35-2.072-6.221-5-7.411v2.223A6 6 0 0 1 18 13c0 3.309-2.691 6-6 6s-6-2.691-6-6a5.999 5.999 0 0 1 3-5.188V5.589C6.072 6.779 4 9.65 4 13c0 4.411 3.589 8 8 8z" />
+            <path d="M11 2h2v10h-2z" />
+          </svg>
+        </button>
+      </div>
+    </aside>
+
+    <div include-html="/questions/partial-dashboard-component.html" id="partial-dashboard_file"></div>
+
+    <body id="bodyContainer" class="bg-lightTheme">
+
+      <div id="sectionsContainer" class="d-flex flex-column g-2 opacityHam ">
+       <div id="sectionsSubContainer" class="d-flex flex-row g-2 opacityHam ">
+          <div id="UICont" class="w-100 d-none d-flex flex-column align-items-center  rounded-start bg-white w-75 gap-3 overflow-scroll border border-success p-4  mb-2 border-opacity-25 bg-white">
+              <div id="displayUIContainer" class="bg-lightTheme p-3  h-100 d-flex flex-column gap-3 align-items-center w-75 rounded-3">
+                      <input placeholder="type a word" type="text" id="num1" class="px-3 py-1 rounded w-100"/>
+                      <input placeholder="letter you want to replace" type="text" id="num2" class="px-3 py-1 rounded w-100"/>
+                      <button onclick="handlesReplace()" id="outputBtn" class="rounded p-2 w-100">Replace</button>
             </div>
+          </div>
         </div>
+      </div>
+  </div>
 
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- <script src="/questions/include-html.min.js"></script> -->
 
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
-    <script src="../index.1.js"></script>
-    <!-- <script src="./Components/1InputField.js"></script> -->
+  <script>
 
-    <script>
-
-        function addProp() {
+function handlesReplace() {
             const num1 = document.getElementById("num1").value;
+            const num2 = document.getElementById("num2").value;
             const result = document.getElementById("result");
 
-            let obj = { a: 1, b: 2, c: 3 }
-            obj.d = 4
-            const obj1 = Object.defineProperty(obj, "e", { value: 5 })
-            const obj2 = Object.assign({}, obj, { f: 7 })
-            console.log(obj1)
-            console.log(obj2);
-            result.value = `        
-                let obj={a:1,b:2,c:3}
-                obj.d=4
-                const obj1=Object.defineProperty(obj,"e",{value:5})
-                const obj2=  Object.assign({},obj,{f:7})
-                console.log(obj1)
-                console.log(obj2);  `
+         if  ((/^.*[A-Za-z]+$/.test(num2) )){
+            result.innerHTML = 
+            `${num1} Start with ${num2}
+             :-- 
+             ${replace(num1,num2)}`;
+          }else alert("Enter A Valid Character")
+
+        }
+     
+        function replace(a,b) {
+            if(a.startsWith(b)){return true}
+            else {return false}
         }
 
 
-    </script>
+
+</script>
 
 </body>
 
