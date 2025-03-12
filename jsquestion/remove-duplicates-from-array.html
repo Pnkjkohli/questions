@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add Element to Start of an Array</title>
+  <title>Remove Duplicates From Array
+  </title>
   <link rel="stylesheet" href="/questions/index.css">
 </head>
 
@@ -19,7 +20,8 @@
     <aside class="search-wrap">
       <div class="search">
         <label for="search">
-          <h3>Add Element to Start of an Array</h3>
+          <h3>Remove Duplicates From Array
+          </h3>
         </label>
       </div>
       <div class="user-actions">
@@ -47,14 +49,13 @@
         </div>
        
         <div id="clone-object">
-          <h4>Updated Array:</h4>
+          <h4>Unique Array:</h4>
           <pre id="display-content"></pre>
         </div>
       </div>
-      <form action="" id="Form">
-        <input type="text" placeholder="Enter properties" id="num1" style="padding:10px; width: 50%;">
+     
         <button id="btn" type="submit" style="padding:10px 20px;">Enter</button>
-      </form>
+     
     </div>
   </div>
 
@@ -62,22 +63,23 @@
   <script src="/questions/include-html.min.js"></script>
 
   <script>
-    const firstObject = ['reading', 'games', 'coding'];
+    const arr = ['reading', 'games', 'coding','reading','tavelling','trekking','coding'];
 
-    document.getElementById('firstobject-content').textContent = JSON.stringify(firstObject, null, 2);
+    document.getElementById('firstobject-content').textContent = JSON.stringify(arr, null, 2);
 
     var btn = document.getElementById('btn');
     btn.addEventListener('click', function (event) {
       event.preventDefault();  
-      var property = document.getElementById('num1').value;
 
-      var display = document.getElementById('display-content');
-      if (property.trim() !== '') { 
-        firstObject.splice(0, 0, property);
+  
+      if (arr) { 
+        let uniqueArr = [...new Set(arr)];
+
         
-        display.textContent = JSON.stringify(firstObject, null, 2);
+        var display = document.getElementById('display-content');
+        display.textContent = JSON.stringify(uniqueArr, null, 2);
       } else {
-        display.textContent = "Please enter a value";
+        display.innerHTML = "Please enter a value";
       }
     });
   </script>
