@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator with setTimeout</title>
+  <link rel="stylesheet" href="/questions/index.css">
+</head>
+<body>
+  <div class="dashboard">
+    <aside class="search-wrap">
+      <div class="search">
+        <label for="search">
+          <h3>Calculator with setTimeout() Function</h3>
+        </label>
+      </div>
+    </aside>
+    <div include-html="/questions/partial-dashboard-component.html" id="partial-dashboard_file"></div>
+
+    <div class="task">
+      <form id="Form" style="display: inline-flex; gap: 25px;">
+        <input type="text" id="num1" placeholder="Enter first number" style="padding:10px;">
+        <input type="text" id="num2" placeholder="Enter second number" style="padding:10px;">
+        <input type="text" id="num3" placeholder="Enter operation (add, sub, multiply, divide)" style="padding:10px;">
+        <button id="btn" type="button" style="padding:10px 20px;">Calculate</button>
+      </form>
+      <h1 class="text"></h1>
+      <p id="result"></p>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>		
+    <script src="/questions/include-html.min.js"></script>
+
+    <script>
+      // Function to handle calculation and operation
+      function handleCallback() {
+        const num1 = document.getElementById("num1").value;
+        const num2 = document.getElementById("num2").value;
+        const operation = document.getElementById("num3").value.toLowerCase();
+        const outputBtn = document.getElementById("btn");
+
+        // Check for valid numbers
+        if (isNaN(num1) || isNaN(num2)) {
+          alert("Please enter valid numbers!");
+          document.getElementsByClassName("text")[0].innerText = "Please enter valid numbers!";
+          return;
+        }
+
+        // Define an object that maps operations to functions
+        const operations = {
+          add: (a, b) => Number(a) + Number(b),
+          sub: (a, b) => Number(a) - Number(b),
+          multiply: (a, b) => Number(a) * Number(b),
+          divide: (a, b) => {
+            if (Number(b) === 0) return "Cannot divide by zero!";
+            return Number(a) / Number(b);
+          }
+        };
+
+        // Handle operation
+        const operationFn = operations[operation] || operations[operation.charAt(0)];
+        let result = "Invalid operation";
+
+        // If the operation exists, execute it
+        if (operationFn) {
+          result = operationFn(num1, num2);
+          outputBtn.textContent = operation.charAt(0).toUpperCase() + operation.slice(1);
+        }
+
+       
+          document.getElementsByClassName("text")[0].innerText = `Result: ${result}`;
+       
+      }
+
+      // Event listener for button click
+      document.getElementById('btn').addEventListener('click', function(event) {
+        event.preventDefault();
+        handleCallback();
+      });
+    </script>
+  </div>
+</body>
+</html>

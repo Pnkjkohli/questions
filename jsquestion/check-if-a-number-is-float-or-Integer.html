@@ -4,8 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>sample
-  </title>
+  <title>Check if a Number is Float or Integer</title>
   <link rel="stylesheet" href="/questions/index.css">
 </head>
 
@@ -14,8 +13,7 @@
     <aside class="search-wrap">
       <div class="search">
         <label for="search">
-          <h3>Check If A Variable Is undefined or null
-          </h3>
+          <h3>Check if a Number is Float or Integer</h3>
         </label>
       </div>
       <div class="user-actions">
@@ -34,33 +32,37 @@
         </button>
       </div>
     </aside>
-    <div include-html="/questions/partial-dashboard-component.html" id="partial-dashboard_file">
-    </div>
+    <div include-html="/questions/partial-dashboard-component.html" id="partial-dashboard_file"></div>
     <div class="task">
-     
-      <div id="sectionsContainer" class="d-flex flex-column g-2 opacityHam ">
-        <div id="sectionsSubContainer" class="d-flex flex-row g-2 opacityHam ">
-          <button onclick="dateToNumber()">Convert Date to Number</button>
-          <div id="result"></div>
-        </div>
+      <form id="Form" style="display: inline-flex; gap: 25px;">
+        <textarea placeholder="Enter a number to check if it's a float or integer" id="variable" style="padding:22px"></textarea>
+        <button id="btn" style="padding:10px 20px;">Check</button>
+      </form>
+      <h1 class="text"></h1>
     </div>
-    </div>
-  </div>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="/questions/include-html.min.js"></script>
-  <script>
-          function dateToNumber() {
-            const result = document.getElementById("result");
-            result.innerHTML = `time in ms: ${typeDate()[0]} \n type is:  ${typeDate()[1]}`;
-        }
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="/questions/include-html.min.js"></script>
+    <script>
+      document.getElementById('btn').addEventListener('click', function (event) {
+        event.preventDefault();
 
-        function typeDate() {
-            let date = new Date();
-            let type = date.getTime();
-            console.log(type, typeof(type));
-            return [type, typeof(type)];
+        var userInput = document.getElementById('variable').value;
+        let text = document.getElementsByClassName('text')[0];
+
+        // Convert the input to a number and check
+        let num = parseFloat(userInput);
+
+        if (isNaN(num)) {
+          text.innerHTML = 'Please enter a valid number.';
+        } else {
+          if (Number.isInteger(num)) {
+            text.innerHTML = `${num} is an integer.`;
+          } else {
+            text.innerHTML = `${num} is a float value.`;
+          }
         }
-</script>
+      });
+    </script>
 </body>
 
 </html>

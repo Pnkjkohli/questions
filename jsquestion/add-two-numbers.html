@@ -54,11 +54,15 @@
       var num2 = parseFloat(secondNumber);
       // document.getElementById("Form").reset();
       if (!isNaN(num1) && !isNaN(num2)) {
-        text.innerHTML = 'The sum is: ' + (num1 + num2);
+        text.innerHTML = 'The sum is: ' + add(num1, num2);
       } else {
         text.innerHTML = 'Please enter valid numbers.';
       }
     });
+
+    function add(num1, num2){
+      return num1 + num2;
+    }
   </script>
 </body>
 </html>

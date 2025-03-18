@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>sample
+  <title>Get File Extension
   </title>
   <link rel="stylesheet" href="/questions/index.css">
 </head>
@@ -14,7 +14,7 @@
     <aside class="search-wrap">
       <div class="search">
         <label for="search">
-          <h3>Check If A Variable Is undefined or null
+          <h3>Get File Extension
           </h3>
         </label>
       </div>
@@ -37,30 +37,35 @@
     <div include-html="/questions/partial-dashboard-component.html" id="partial-dashboard_file">
     </div>
     <div class="task">
-     
-      <div id="sectionsContainer" class="d-flex flex-column g-2 opacityHam ">
-        <div id="sectionsSubContainer" class="d-flex flex-row g-2 opacityHam ">
-          <button onclick="dateToNumber()">Convert Date to Number</button>
-          <div id="result"></div>
-        </div>
-    </div>
+      <form action="" id="Form">
+        <input type="text" placeholder="Enter file Name(abc.text)" id="filename" style="padding:10px;width: 22%;">
+        <button id="btn" style="padding:10px 20px;">Get</button>
+      </form>
+      <h1 class="text"></h1>
     </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="/questions/include-html.min.js"></script>
   <script>
-          function dateToNumber() {
-            const result = document.getElementById("result");
-            result.innerHTML = `time in ms: ${typeDate()[0]} \n type is:  ${typeDate()[1]}`;
-        }
+    var btn = document.getElementById('btn');
+    btn.addEventListener('click', function () {
+      event.preventDefault();
+      var filename = document.getElementById('filename').value;
+      var text = document.getElementsByClassName('text')[0];
+      if (filename) {
 
-        function typeDate() {
-            let date = new Date();
-            let type = date.getTime();
-            console.log(type, typeof(type));
-            return [type, typeof(type)];
-        }
-</script>
+        text.innerHTML = 'File extension is: ' + getFileExtension(filename);
+      } else {
+        text.innerHTML = 'Please Enter the file name';
+      }
+    });
+
+    function getFileExtension(filename) {
+
+      const extension = filename.split('.').pop();
+      return extension;
+    }
+  </script>
 </body>
 
 </html>

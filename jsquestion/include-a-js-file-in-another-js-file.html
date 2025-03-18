@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>sample
+  <title>Include a JS file in Another JS file
   </title>
   <link rel="stylesheet" href="/questions/index.css">
 </head>
-
 <body>
   <div class="dashboard">
     <aside class="search-wrap">
       <div class="search">
         <label for="search">
-          <h3>Check If A Variable Is undefined or null
+          <h3>Include a JS file in Another JS file
           </h3>
         </label>
       </div>
@@ -37,30 +35,15 @@
     <div include-html="/questions/partial-dashboard-component.html" id="partial-dashboard_file">
     </div>
     <div class="task">
-     
-      <div id="sectionsContainer" class="d-flex flex-column g-2 opacityHam ">
-        <div id="sectionsSubContainer" class="d-flex flex-row g-2 opacityHam ">
-          <button onclick="dateToNumber()">Convert Date to Number</button>
-          <div id="result"></div>
-        </div>
-    </div>
+      <button id="btn" style="padding:10px 20px;">Get data from js file</button>
+
+      <h1 class="text"></h1>
     </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="/questions/include-html.min.js"></script>
-  <script>
-          function dateToNumber() {
-            const result = document.getElementById("result");
-            result.innerHTML = `time in ms: ${typeDate()[0]} \n type is:  ${typeDate()[1]}`;
-        }
+  <script type="module" src="/questions/jsquestion/variables/get-data-from-js-file.js"></script>
 
-        function typeDate() {
-            let date = new Date();
-            let type = date.getTime();
-            console.log(type, typeof(type));
-            return [type, typeof(type)];
-        }
-</script>
+
 </body>
-
 </html>

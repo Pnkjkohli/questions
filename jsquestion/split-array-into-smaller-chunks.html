@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Compare Elements of Two Arrays
+  <title>Split Array into Smaller Chunks
   </title>
   <link rel="stylesheet" href="/questions/index.css">
 </head>
@@ -21,7 +21,7 @@
     <aside class="search-wrap">
       <div class="search">
         <label for="search">
-          <h3>Compare Elements of Two Arrays
+          <h3>Split Array into Smaller Chunks
           </h3>
         </label>
       </div>
@@ -45,7 +45,6 @@
     <div include-html="/questions/partial-dashboard-component.html" id="partial-dashboard_file"></div>
 
     <div class="task">
-      <h1 class="text" id="check"></h1>
 
       <div class="object">
         <div id="object-display">
@@ -61,19 +60,14 @@
         </div>
 
         <div id="object-display">
-          <h4>Fruits array:</h4>
-          <pre id="object2-content"></pre>
+          <h4>Fruits array2:</h4>
+          <pre id="object2-content" style="
+          margin-bottom: 64px;"></pre>
 
-
-          <form action="" id="Form">
-            <input type="text" placeholder="Enter fruit name to add" id="property-name2"
-              style="padding:10px; width: 50%;">
-            <button id="btn2" style="padding:10px 20px;">Insert</button>
-          </form>
         </div>
       </div>
 
-      <button id="compare" style="padding:10px 20px; margin-top: 50px">Compare two arrays</button>
+      <button id="splits" style="padding:10px 20px; margin-top: 50px">Splits into array</button>
 
     </div>
   </div>
@@ -82,8 +76,7 @@
   <script src="/questions/include-html.min.js"></script>
 
   <script>
-    const fruits1 = ["Banana", "Orange", "Apple", "Mango"];
-    const fruits2 = ["Banana", "Orange", "Apple", "Mango"];
+    const fruits1 = ["Banana", "Orange", "Apple", "Mango", "kiwi", "graps"];
 
     // Function to display the arrays
     function displayObject(obj, elementId) {
@@ -92,7 +85,6 @@
 
     // Initial display of the arrays
     displayObject(fruits1, 'object-content');
-    displayObject(fruits2, 'object2-content');
 
     // Handle first fruit array form submission
     var btn1 = document.getElementById('btn1');
@@ -111,47 +103,26 @@
 
       // Display the updated fruits arrays
       displayObject(fruits1, 'object-content');
-      displayObject(fruits2, 'object2-content');
     });
 
-    // Handle second fruit array form submission
-    var text = document.getElementById('check');
+    var text = document.getElementById('object2-content');
 
-    var btn2 = document.getElementById('btn2');
-    btn2.addEventListener('click', function (event) {
+
+    var splitsbtn = document.getElementById('splits');
+    splitsbtn.addEventListener('click', function (event) {
       event.preventDefault();
-
-      var propertyName2 = document.getElementById('property-name2').value;
-
-      if (propertyName2) {
-        fruits2.push(propertyName2);
-        text.innerHTML = `${propertyName2} has been added to the second fruits array.`;
-      } else {
-        text.innerHTML = `No fruit entered for the second array.`;
-      }
-
-      // Display the updated fruits arrays
-      displayObject(fruits1, 'object-content');
-      displayObject(fruits2, 'object2-content');
+      text.innerHTML = splitIntoChunk(fruits1, 2).map(chunk => chunk.join(', ')).join('<br>');
 
     });
+    // program to split array into smaller chunks
 
-    var comparebtn = document.getElementById('compare');
-    comparebtn.addEventListener('click', function (event) {
-      event.preventDefault();
-      text.innerHTML = compareArrays(fruits1,fruits2);
-    });
-    function compareArrays(arr1, arr2) {
-
-      const result = JSON.stringify(fruits1) == JSON.stringify(fruits2)
-
-      if (result) {
-        return 'The arrays have the same elements.';
+    function splitIntoChunk(arr, chunk) {
+      let result = [];
+      while (arr.length > 0) {
+        let tempArray = arr.splice(0, chunk);
+        result.push(tempArray);
       }
-      else {
-        return 'The arrays have different elements.';
-      }
-
+      return result;
     }
 
   </script>

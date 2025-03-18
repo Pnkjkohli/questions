@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Compare Elements of Two Arrays
+  <title>Intersection Between Two Arrays
   </title>
   <link rel="stylesheet" href="/questions/index.css">
 </head>
@@ -21,7 +21,7 @@
     <aside class="search-wrap">
       <div class="search">
         <label for="search">
-          <h3>Compare Elements of Two Arrays
+          <h3>Intersection Between Two Arrays
           </h3>
         </label>
       </div>
@@ -61,8 +61,9 @@
         </div>
 
         <div id="object-display">
-          <h4>Fruits array:</h4>
-          <pre id="object2-content"></pre>
+          <h4>Fruits array2:</h4>
+          <pre id="object2-content" style="
+          margin-bottom: 64px;"></pre>
 
 
           <form action="" id="Form">
@@ -73,7 +74,7 @@
         </div>
       </div>
 
-      <button id="compare" style="padding:10px 20px; margin-top: 50px">Compare two arrays</button>
+      <button id="compare" style="padding:10px 20px; margin-top: 50px">Intersection</button>
 
     </div>
   </div>
@@ -82,8 +83,8 @@
   <script src="/questions/include-html.min.js"></script>
 
   <script>
-    const fruits1 = ["Banana", "Orange", "Apple", "Mango"];
-    const fruits2 = ["Banana", "Orange", "Apple", "Mango"];
+    const fruits1 = ["Banana", "Orange", "Apple", "Mango", "kiwi", "graps", "pineapple"];
+    const fruits2 = ["Banana", "graps", "Apple", "kiwi"];
 
     // Function to display the arrays
     function displayObject(obj, elementId) {
@@ -139,18 +140,13 @@
     var comparebtn = document.getElementById('compare');
     comparebtn.addEventListener('click', function (event) {
       event.preventDefault();
-      text.innerHTML = compareArrays(fruits1,fruits2);
+      text.innerHTML = 'New Array = [ '+ performIntersection(fruits1, fruits2)+ ' ]';
     });
-    function compareArrays(arr1, arr2) {
+    function performIntersection(arr1, arr2) {
 
-      const result = JSON.stringify(fruits1) == JSON.stringify(fruits2)
+      const intersectionResult = arr1.filter(x => arr2.indexOf(x) !== -1);
 
-      if (result) {
-        return 'The arrays have the same elements.';
-      }
-      else {
-        return 'The arrays have different elements.';
-      }
+      return intersectionResult;
 
     }
 
