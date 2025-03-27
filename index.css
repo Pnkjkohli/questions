@@ -238,7 +238,8 @@ padding: 0px;
 overflow: scroll;
 }
 .questions_Js{
-  height: 250px;
+  /* height: 250px; */
+  height: 550px;
   overflow: scroll;
 }
 
