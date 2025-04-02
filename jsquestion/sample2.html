@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sample
+  </title>
+  <link rel="stylesheet" href="/questions/index.css">
+</head>
+
+<body>
+  <div class="dashboard">
+    <aside class="search-wrap">
+      <div class="search">
+        <label for="search">
+          <h3>Check pdf links
+          </h3>
+        </label>
+      </div>
+      <div class="user-actions">
+        <button>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path
+              d="M13.094 2.085l-1.013-.082a1.082 1.082 0 0 0-.161 0l-1.063.087C6.948 2.652 4 6.053 4 10v3.838l-.948 2.846A1 1 0 0 0 4 18h4.5c0 1.93 1.57 3.5 3.5 3.5s3.5-1.57 3.5-3.5H20a1 1 0 0 0 .889-1.495L20 13.838V10c0-3.94-2.942-7.34-6.906-7.915zM12 19.5c-.841 0-1.5-.659-1.5-1.5h3c0 .841-.659 1.5-1.5 1.5zM5.388 16l.561-1.684A1.03 1.03 0 0 0 6 14v-4c0-2.959 2.211-5.509 5.08-5.923l.921-.074.868.068C15.794 4.497 18 7.046 18 10v4c0 .107.018.214.052.316l.56 1.684H5.388z" />
+          </svg>
+        </button>
+        <button>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path
+              d="M12 21c4.411 0 8-3.589 8-8 0-3.35-2.072-6.221-5-7.411v2.223A6 6 0 0 1 18 13c0 3.309-2.691 6-6 6s-6-2.691-6-6a5.999 5.999 0 0 1 3-5.188V5.589C6.072 6.779 4 9.65 4 13c0 4.411 3.589 8 8 8z" />
+            <path d="M11 2h2v10h-2z" />
+          </svg>
+        </button>
+      </div>
+    </aside>
+    <div include-html="/questions/partial-dashboard-component.html" id="partial-dashboard_file">
+    </div>
+    <div class="task">
+     
+     
+
+      <input type="file" id="pdfInput" accept="application/pdf">
+      <button id="extractLinksBtn">Extract & Validate Links</button>
+      <div id="output"style="
+      overflow: scroll;
+      height: 500px;
+  "></div>
+
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="/questions/include-html.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
+
+document.getElementById("extractLinksBtn").addEventListener("click", function () {
+    const file = document.getElementById("pdfInput").files[0];
+    if (!file) {
+        alert("Please select a PDF file first!");
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function () {
+        const typedArray = new Uint8Array(this.result);
+        pdfjsLib.getDocument(typedArray).promise.then(pdf => {
+            console.log(`📄 Total Pages: ${pdf.numPages}`);
+            let totalPages = pdf.numPages;
+            let allLinks = [];
+
+            function processPage(pageNumber) {
+                if (pageNumber > totalPages) {
+                    console.log("✅ All Pages Processed. Now Validating Links...");
+                    validateLinks(allLinks);
+                    return;
+                }
+
+                pdf.getPage(pageNumber).then(async page => {
+                    let annotations = await page.getAnnotations();
+                    let textContent = await page.getTextContent();
+                    let extractedText = textContent.items.map(item => item.str).join(" ");
+
+                    let annotationLinks = annotations
+                        .filter(anno => anno.url)
+                        .map(anno => ({ page: pageNumber, url: anno.url }));
+                    
+                    let textLinks = extractLinksFromText(extractedText, pageNumber);
+                    
+                    allLinks = allLinks.concat(annotationLinks, textLinks);
+                    console.log(`🔍 Page ${pageNumber}:`, annotationLinks, textLinks);
+                    processPage(pageNumber + 1);
+                }).catch(err => console.error(`❌ Error processing page ${pageNumber}:`, err));
+            }
+
+            processPage(1);
+        }).catch(err => console.error("❌ Error loading PDF:", err));
+    };
+
+    reader.readAsArrayBuffer(file);
+});
+
+function extractLinksFromText(text, page) {
+    let urlRegex = /(https?:\/\/[^\s]+|www\.[^\s]+)/g;
+    let matches = text.match(urlRegex);
+    return matches ? matches.map(url => ({ page, url })) : [];
+}
+
+function validateLinks(links) {
+    const outputDiv = document.getElementById("output");
+    outputDiv.innerHTML = "<h3>Checking Links...</h3>";
+
+    let validLinks = [];
+    let invalidLinks = [];
+    let blankLinks = [];
+
+    if (links.length === 0) {
+        outputDiv.innerHTML = "<h3>No links found in PDF.</h3>";
+        return;
+    }
+
+    links.forEach(linkObj => {
+        let { page, url } = linkObj;
+        
+        if (!url.trim()) {
+            blankLinks.push({ page, url });
+            return;
+        }
+
+        fetch(url, { method: 'HEAD' })
+            .then(response => {
+                if (response.ok) {
+                    validLinks.push({ page, url });
+                } else {
+                    invalidLinks.push({ page, url });
+                }
+                updateOutput(validLinks, invalidLinks, blankLinks);
+            })
+            .catch(() => {
+                invalidLinks.push({ page, url });
+                updateOutput(validLinks, invalidLinks, blankLinks);
+            });
+    });
+}
+
+function updateOutput(valid, invalid, blank) {
+    let outputDiv = document.getElementById("output");
+
+    outputDiv.innerHTML = `
+        <h3>✅ Valid Links (${valid.length}):</h3>
+        <ul>${valid.map(l => `<li>Page ${l.page}: <a href="${l.url}" target="_blank">${l.url}</a></li>`).join('')}</ul>
+
+        <h3>❌ Invalid Links (${invalid.length}):</h3>
+        <ul>${invalid.map(l => `<li>Page ${l.page}: ${l.url}</li>`).join('')}</ul>
+
+        <h3>⚠ Blank Links (${blank.length}):</h3>
+        <ul>${blank.map(l => `<li>Page ${l.page}</li>`).join('')}</ul>
+    `;
+}
+
+</script>
+  <style>
+    .pdf-page { border: 1px solid #ddd; padding: 10px; margin: 10px 0; }
+</style>
+</body>
+
+</html>

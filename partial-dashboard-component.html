@@ -1,7 +1,9 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <header class="menu-wrap">
-  <figure class="user">
+  <figure class="user" id="logo">
     <div class="user-avatar">
       <img src="/questions/icons/60b55880-bd67-11ea-9b27-34ffd8496e21.png" alt="Javascript Questions">
     </div>
@@ -9,13 +11,15 @@
       <a href=""></a>
     </figcaption>
   </figure>
-  <nav>
+  
+  <nav style="position: fixed;">
 
     <div id="jsQuestions" style="margin-top: 50px;">
       <a href="/questions/index.html" style="text-decoration: none;">
-        <h3>JS Questions </a><i class="fa-solid fa-angle-down" style="
+        <h3>JS Questions
+      </a><i class="fa-solid fa-angle-down" style="
           margin-left: 10px;" id="JsArrow"></i></h3>
-      
+
     </div>
     <section class="questions_Js" id="question_js" style="display: none;">
 
@@ -1143,92 +1147,158 @@
 
     <div class="Sql" style="margin-top: 20px;">
       <a href="" style="text-decoration: none;">
-        <h3>Sql Questions</a><i class="fa-solid fa-angle-down" style="
-          margin-left: 10px;" id="SqlArrow"></i></h3> 
-      <!-- </a> -->
+        <h3>Sql Questions
+      </a><i class="fa-solid fa-angle-down" style="
+          margin-left: 10px;" id="SqlArrow"></i></h3>
     </div>
 
     <section class="sql-block" id="sqlblock" style="display: none; margin-top: 0px;">
-      <a href="/questions/sql-questions/normalization/normalization.html" style="text-decoration: none; color: darkgoldenrod; margin-left: 14px;">
-        <h3>Normalisation</a><i class="fa-solid fa-angle-down" style="
-          margin-left: 10px;" id="NormalizationArrow"></i></h3> 
-      
+      <a href="/questions/sql-questions/normalization/normalization.html"
+        style="text-decoration: none; color: darkgoldenrod; margin-left: 14px;">
+        <h3>Normalisation
+      </a><i class="fa-solid fa-angle-down" style="
+          margin-left: 10px;" id="NormalizationArrow"></i></h3>
+
 
       <section class="Normalisation_exercise" id="Normalisation_exercise" style="display: none; margin-left: 35px;">
         <ul>
-          <li>
-            <a href="/questions/sql-questions/normalization/practice-1.html">
-  
-                <svg fill="#000000" width="24" height="24" viewBox="0 0 256 256" id="Flat"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M220,47.99316v104a12.01343,12.01343,0,0,1-12,12H89.6499l17.17871,17.17871a3.99992,3.99992,0,1,1-5.65722,5.65625l-24-24a3.96241,3.96241,0,0,1-.79-1.15478c-.02124-.04553-.0503-.08618-.06983-.13269a3.96477,3.96477,0,0,1-.17993-.57971c-.01489-.05884-.0393-.11353-.05151-.17334a4.01873,4.01873,0,0,1-.07984-.79175L76,159.99316c0-.03662.00977-.07055.01074-.10693a3.9985,3.9985,0,0,1,.06738-.66675,3.9185,3.9185,0,0,1,.14258-.48193c.02881-.08594.0459-.17432.08033-.25855a3.95378,3.95378,0,0,1,.31738-.60278c.0166-.02649.0271-.05554.04419-.08166a4.0061,4.0061,0,0,1,.54809-.662l23.9607-23.9607a3.99992,3.99992,0,0,1,5.65722,5.65625l-17.165,17.165H208a4.00426,4.00426,0,0,0,4-4v-104a4.00427,4.00427,0,0,0-4-4H96a4.00427,4.00427,0,0,0-4,4v8a4,4,0,0,1-8,0v-8a12.01344,12.01344,0,0,1,12-12H208A12.01344,12.01344,0,0,1,220,47.99316ZM168,196a4.0002,4.0002,0,0,0-4,4v8a4.00427,4.00427,0,0,1-4,4H48a4.00427,4.00427,0,0,1-4-4V104a4.00427,4.00427,0,0,1,4-4H166.33643l-17.165,17.165a3.99992,3.99992,0,1,0,5.65722,5.65625l23.9607-23.96069a4.0061,4.0061,0,0,0,.54809-.662c.01709-.02612.02759-.05506.04419-.08142a3.984,3.984,0,0,0,.31738-.603c.03443-.08435.05152-.17285.08033-.25879a3.92106,3.92106,0,0,0,.14258-.48169,3.9985,3.9985,0,0,0,.06738-.66675c.001-.03637.01074-.07031.01074-.10693l-.00024-.00269a4.01863,4.01863,0,0,0-.07984-.79174c-.01221-.05982-.03662-.11438-.05127-.1731a3.97218,3.97218,0,0,0-.18017-.58c-.01953-.04663-.04859-.08752-.06983-.13317a3.962,3.962,0,0,0-.79-1.1543l-24-24a3.99992,3.99992,0,0,0-5.65722,5.65625L166.3501,92H48a12.01343,12.01343,0,0,0-12,12V208a12.01343,12.01343,0,0,0,12,12H160a12.01343,12.01343,0,0,0,12-12v-8A4.0002,4.0002,0,0,0,168,196Z" />
-                </svg>
-                Practice 1
-              </a>
-          </li>
-        </ul>
-      </section>
-      <a href="/questions/project/project.html" style="text-decoration: none; color: darkgoldenrod; margin-left: 14px;">
-        <h3>Questions</a><i class="fa-solid fa-angle-down" style="
-          margin-left: 10px;" id="QuestionArrow"></i></h3> 
-      </a>
-    </section>
-
-
-
-    <div class="Project" style="margin-top: 20px;">
-      <a href="/questions/project/project.html" style="text-decoration: none;">
-        <h3>Project</a><i class="fa-solid fa-angle-down" style="
-          margin-left: 10px;" id="ProjectArrow"></i></h3>
-      </a>
-    </div>
-      <section class="Project_Exercise" id="Project_Exercise" style="display: none;">
-        <ul>
-          <li>
-            <a href="/questions/project/mouseover_element.html">
-              <svg width="24" height="24" viewBox="0 0 48 48" id="a" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <style>
-                    .b {
-                      fill: #000000;
-                    }
-
-                    .c {
-                      fill: none;
-                      stroke: #000000;
-                      stroke-linecap: round;
-                      stroke-linejoin: round;
-                      stroke-width: 1px;
-                    }
-                  </style>
-                </defs>
-                <path class="c"
-                  d="M14.5171,35.415H6.4026c-.4985,0-.9026-.4041-.9026-.9026v-13.504c0-.4985,.4041-.9026,.9026-.9026H41.5974c.4985,0,.9026,.4041,.9026,.9026v13.504c0,.4985-.4041,.9026-.9026,.9026h-8.1144" />
-                <rect class="c" x="14.5171" y="31.4366" width="18.9659" height="10.13" />
-                <path class="c" d="M33.4829,20.1056H14.5171V6.4334h14.9659l4,4v9.6723Z" />
-                <polyline class="c" points="29.8724 6.4334 29.8724 10.0439 33.4829 10.0439" />
-                <circle class="b" cx="39.8515" cy="22.8983" r=".75" />
-                <circle class="b" cx="36.8351" cy="22.8983" r=".75" />
-                <circle class="b" cx="33.8187" cy="22.8983" r=".75" />
-              </svg>
-              Mouseover Element
-            </a>
-          </li>
 
           <li>
-            <a href="/questions/project/digital-clock.html">
+            <a href="/questions/sql-questions/normalization/practice-question1.html">
 
               <svg fill="#000000" width="24" height="24" viewBox="0 0 256 256" id="Flat"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M220,47.99316v104a12.01343,12.01343,0,0,1-12,12H89.6499l17.17871,17.17871a3.99992,3.99992,0,1,1-5.65722,5.65625l-24-24a3.96241,3.96241,0,0,1-.79-1.15478c-.02124-.04553-.0503-.08618-.06983-.13269a3.96477,3.96477,0,0,1-.17993-.57971c-.01489-.05884-.0393-.11353-.05151-.17334a4.01873,4.01873,0,0,1-.07984-.79175L76,159.99316c0-.03662.00977-.07055.01074-.10693a3.9985,3.9985,0,0,1,.06738-.66675,3.9185,3.9185,0,0,1,.14258-.48193c.02881-.08594.0459-.17432.08033-.25855a3.95378,3.95378,0,0,1,.31738-.60278c.0166-.02649.0271-.05554.04419-.08166a4.0061,4.0061,0,0,1,.54809-.662l23.9607-23.9607a3.99992,3.99992,0,0,1,5.65722,5.65625l-17.165,17.165H208a4.00426,4.00426,0,0,0,4-4v-104a4.00427,4.00427,0,0,0-4-4H96a4.00427,4.00427,0,0,0-4,4v8a4,4,0,0,1-8,0v-8a12.01344,12.01344,0,0,1,12-12H208A12.01344,12.01344,0,0,1,220,47.99316ZM168,196a4.0002,4.0002,0,0,0-4,4v8a4.00427,4.00427,0,0,1-4,4H48a4.00427,4.00427,0,0,1-4-4V104a4.00427,4.00427,0,0,1,4-4H166.33643l-17.165,17.165a3.99992,3.99992,0,1,0,5.65722,5.65625l23.9607-23.96069a4.0061,4.0061,0,0,0,.54809-.662c.01709-.02612.02759-.05506.04419-.08142a3.984,3.984,0,0,0,.31738-.603c.03443-.08435.05152-.17285.08033-.25879a3.92106,3.92106,0,0,0,.14258-.48169,3.9985,3.9985,0,0,0,.06738-.66675c.001-.03637.01074-.07031.01074-.10693l-.00024-.00269a4.01863,4.01863,0,0,0-.07984-.79174c-.01221-.05982-.03662-.11438-.05127-.1731a3.97218,3.97218,0,0,0-.18017-.58c-.01953-.04663-.04859-.08752-.06983-.13317a3.962,3.962,0,0,0-.79-1.1543l-24-24a3.99992,3.99992,0,0,0-5.65722,5.65625L166.3501,92H48a12.01343,12.01343,0,0,0-12,12V208a12.01343,12.01343,0,0,0,12,12H160a12.01343,12.01343,0,0,0,12-12v-8A4.0002,4.0002,0,0,0,168,196Z" />
               </svg>
-              Digital Clock
+              Practice Question 1
+            </a>
+          </li>
+          <li>
+            <a href="/questions/sql-questions/normalization/practice-question2.html">
+
+              <svg fill="#000000" width="24" height="24" viewBox="0 0 256 256" id="Flat"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M220,47.99316v104a12.01343,12.01343,0,0,1-12,12H89.6499l17.17871,17.17871a3.99992,3.99992,0,1,1-5.65722,5.65625l-24-24a3.96241,3.96241,0,0,1-.79-1.15478c-.02124-.04553-.0503-.08618-.06983-.13269a3.96477,3.96477,0,0,1-.17993-.57971c-.01489-.05884-.0393-.11353-.05151-.17334a4.01873,4.01873,0,0,1-.07984-.79175L76,159.99316c0-.03662.00977-.07055.01074-.10693a3.9985,3.9985,0,0,1,.06738-.66675,3.9185,3.9185,0,0,1,.14258-.48193c.02881-.08594.0459-.17432.08033-.25855a3.95378,3.95378,0,0,1,.31738-.60278c.0166-.02649.0271-.05554.04419-.08166a4.0061,4.0061,0,0,1,.54809-.662l23.9607-23.9607a3.99992,3.99992,0,0,1,5.65722,5.65625l-17.165,17.165H208a4.00426,4.00426,0,0,0,4-4v-104a4.00427,4.00427,0,0,0-4-4H96a4.00427,4.00427,0,0,0-4,4v8a4,4,0,0,1-8,0v-8a12.01344,12.01344,0,0,1,12-12H208A12.01344,12.01344,0,0,1,220,47.99316ZM168,196a4.0002,4.0002,0,0,0-4,4v8a4.00427,4.00427,0,0,1-4,4H48a4.00427,4.00427,0,0,1-4-4V104a4.00427,4.00427,0,0,1,4-4H166.33643l-17.165,17.165a3.99992,3.99992,0,1,0,5.65722,5.65625l23.9607-23.96069a4.0061,4.0061,0,0,0,.54809-.662c.01709-.02612.02759-.05506.04419-.08142a3.984,3.984,0,0,0,.31738-.603c.03443-.08435.05152-.17285.08033-.25879a3.92106,3.92106,0,0,0,.14258-.48169,3.9985,3.9985,0,0,0,.06738-.66675c.001-.03637.01074-.07031.01074-.10693l-.00024-.00269a4.01863,4.01863,0,0,0-.07984-.79174c-.01221-.05982-.03662-.11438-.05127-.1731a3.97218,3.97218,0,0,0-.18017-.58c-.01953-.04663-.04859-.08752-.06983-.13317a3.962,3.962,0,0,0-.79-1.1543l-24-24a3.99992,3.99992,0,0,0-5.65722,5.65625L166.3501,92H48a12.01343,12.01343,0,0,0-12,12V208a12.01343,12.01343,0,0,0,12,12H160a12.01343,12.01343,0,0,0,12-12v-8A4.0002,4.0002,0,0,0,168,196Z" />
+              </svg>
+              Practice Question 2
+            </a>
+          </li>
+          <li>
+            <a href="/questions/sql-questions/normalization/practice-question3.html">
+
+              <svg fill="#000000" width="24" height="24" viewBox="0 0 256 256" id="Flat"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M220,47.99316v104a12.01343,12.01343,0,0,1-12,12H89.6499l17.17871,17.17871a3.99992,3.99992,0,1,1-5.65722,5.65625l-24-24a3.96241,3.96241,0,0,1-.79-1.15478c-.02124-.04553-.0503-.08618-.06983-.13269a3.96477,3.96477,0,0,1-.17993-.57971c-.01489-.05884-.0393-.11353-.05151-.17334a4.01873,4.01873,0,0,1-.07984-.79175L76,159.99316c0-.03662.00977-.07055.01074-.10693a3.9985,3.9985,0,0,1,.06738-.66675,3.9185,3.9185,0,0,1,.14258-.48193c.02881-.08594.0459-.17432.08033-.25855a3.95378,3.95378,0,0,1,.31738-.60278c.0166-.02649.0271-.05554.04419-.08166a4.0061,4.0061,0,0,1,.54809-.662l23.9607-23.9607a3.99992,3.99992,0,0,1,5.65722,5.65625l-17.165,17.165H208a4.00426,4.00426,0,0,0,4-4v-104a4.00427,4.00427,0,0,0-4-4H96a4.00427,4.00427,0,0,0-4,4v8a4,4,0,0,1-8,0v-8a12.01344,12.01344,0,0,1,12-12H208A12.01344,12.01344,0,0,1,220,47.99316ZM168,196a4.0002,4.0002,0,0,0-4,4v8a4.00427,4.00427,0,0,1-4,4H48a4.00427,4.00427,0,0,1-4-4V104a4.00427,4.00427,0,0,1,4-4H166.33643l-17.165,17.165a3.99992,3.99992,0,1,0,5.65722,5.65625l23.9607-23.96069a4.0061,4.0061,0,0,0,.54809-.662c.01709-.02612.02759-.05506.04419-.08142a3.984,3.984,0,0,0,.31738-.603c.03443-.08435.05152-.17285.08033-.25879a3.92106,3.92106,0,0,0,.14258-.48169,3.9985,3.9985,0,0,0,.06738-.66675c.001-.03637.01074-.07031.01074-.10693l-.00024-.00269a4.01863,4.01863,0,0,0-.07984-.79174c-.01221-.05982-.03662-.11438-.05127-.1731a3.97218,3.97218,0,0,0-.18017-.58c-.01953-.04663-.04859-.08752-.06983-.13317a3.962,3.962,0,0,0-.79-1.1543l-24-24a3.99992,3.99992,0,0,0-5.65722,5.65625L166.3501,92H48a12.01343,12.01343,0,0,0-12,12V208a12.01343,12.01343,0,0,0,12,12H160a12.01343,12.01343,0,0,0,12-12v-8A4.0002,4.0002,0,0,0,168,196Z" />
+              </svg>
+              Practice Question 3
+            </a>
+          </li>
+          <li>
+            <a href="/questions/sql-questions/normalization/practice-question4.html">
+
+              <svg fill="#000000" width="24" height="24" viewBox="0 0 256 256" id="Flat"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M220,47.99316v104a12.01343,12.01343,0,0,1-12,12H89.6499l17.17871,17.17871a3.99992,3.99992,0,1,1-5.65722,5.65625l-24-24a3.96241,3.96241,0,0,1-.79-1.15478c-.02124-.04553-.0503-.08618-.06983-.13269a3.96477,3.96477,0,0,1-.17993-.57971c-.01489-.05884-.0393-.11353-.05151-.17334a4.01873,4.01873,0,0,1-.07984-.79175L76,159.99316c0-.03662.00977-.07055.01074-.10693a3.9985,3.9985,0,0,1,.06738-.66675,3.9185,3.9185,0,0,1,.14258-.48193c.02881-.08594.0459-.17432.08033-.25855a3.95378,3.95378,0,0,1,.31738-.60278c.0166-.02649.0271-.05554.04419-.08166a4.0061,4.0061,0,0,1,.54809-.662l23.9607-23.9607a3.99992,3.99992,0,0,1,5.65722,5.65625l-17.165,17.165H208a4.00426,4.00426,0,0,0,4-4v-104a4.00427,4.00427,0,0,0-4-4H96a4.00427,4.00427,0,0,0-4,4v8a4,4,0,0,1-8,0v-8a12.01344,12.01344,0,0,1,12-12H208A12.01344,12.01344,0,0,1,220,47.99316ZM168,196a4.0002,4.0002,0,0,0-4,4v8a4.00427,4.00427,0,0,1-4,4H48a4.00427,4.00427,0,0,1-4-4V104a4.00427,4.00427,0,0,1,4-4H166.33643l-17.165,17.165a3.99992,3.99992,0,1,0,5.65722,5.65625l23.9607-23.96069a4.0061,4.0061,0,0,0,.54809-.662c.01709-.02612.02759-.05506.04419-.08142a3.984,3.984,0,0,0,.31738-.603c.03443-.08435.05152-.17285.08033-.25879a3.92106,3.92106,0,0,0,.14258-.48169,3.9985,3.9985,0,0,0,.06738-.66675c.001-.03637.01074-.07031.01074-.10693l-.00024-.00269a4.01863,4.01863,0,0,0-.07984-.79174c-.01221-.05982-.03662-.11438-.05127-.1731a3.97218,3.97218,0,0,0-.18017-.58c-.01953-.04663-.04859-.08752-.06983-.13317a3.962,3.962,0,0,0-.79-1.1543l-24-24a3.99992,3.99992,0,0,0-5.65722,5.65625L166.3501,92H48a12.01343,12.01343,0,0,0-12,12V208a12.01343,12.01343,0,0,0,12,12H160a12.01343,12.01343,0,0,0,12-12v-8A4.0002,4.0002,0,0,0,168,196Z" />
+              </svg>
+              Practice Question 4
+            </a>
+          </li>
+          <li>
+            <a href="/questions/sql-questions/normalization/practice-question5.html">
+
+              <svg fill="#000000" width="24" height="24" viewBox="0 0 256 256" id="Flat"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M220,47.99316v104a12.01343,12.01343,0,0,1-12,12H89.6499l17.17871,17.17871a3.99992,3.99992,0,1,1-5.65722,5.65625l-24-24a3.96241,3.96241,0,0,1-.79-1.15478c-.02124-.04553-.0503-.08618-.06983-.13269a3.96477,3.96477,0,0,1-.17993-.57971c-.01489-.05884-.0393-.11353-.05151-.17334a4.01873,4.01873,0,0,1-.07984-.79175L76,159.99316c0-.03662.00977-.07055.01074-.10693a3.9985,3.9985,0,0,1,.06738-.66675,3.9185,3.9185,0,0,1,.14258-.48193c.02881-.08594.0459-.17432.08033-.25855a3.95378,3.95378,0,0,1,.31738-.60278c.0166-.02649.0271-.05554.04419-.08166a4.0061,4.0061,0,0,1,.54809-.662l23.9607-23.9607a3.99992,3.99992,0,0,1,5.65722,5.65625l-17.165,17.165H208a4.00426,4.00426,0,0,0,4-4v-104a4.00427,4.00427,0,0,0-4-4H96a4.00427,4.00427,0,0,0-4,4v8a4,4,0,0,1-8,0v-8a12.01344,12.01344,0,0,1,12-12H208A12.01344,12.01344,0,0,1,220,47.99316ZM168,196a4.0002,4.0002,0,0,0-4,4v8a4.00427,4.00427,0,0,1-4,4H48a4.00427,4.00427,0,0,1-4-4V104a4.00427,4.00427,0,0,1,4-4H166.33643l-17.165,17.165a3.99992,3.99992,0,1,0,5.65722,5.65625l23.9607-23.96069a4.0061,4.0061,0,0,0,.54809-.662c.01709-.02612.02759-.05506.04419-.08142a3.984,3.984,0,0,0,.31738-.603c.03443-.08435.05152-.17285.08033-.25879a3.92106,3.92106,0,0,0,.14258-.48169,3.9985,3.9985,0,0,0,.06738-.66675c.001-.03637.01074-.07031.01074-.10693l-.00024-.00269a4.01863,4.01863,0,0,0-.07984-.79174c-.01221-.05982-.03662-.11438-.05127-.1731a3.97218,3.97218,0,0,0-.18017-.58c-.01953-.04663-.04859-.08752-.06983-.13317a3.962,3.962,0,0,0-.79-1.1543l-24-24a3.99992,3.99992,0,0,0-5.65722,5.65625L166.3501,92H48a12.01343,12.01343,0,0,0-12,12V208a12.01343,12.01343,0,0,0,12,12H160a12.01343,12.01343,0,0,0,12-12v-8A4.0002,4.0002,0,0,0,168,196Z" />
+              </svg>
+              Practice Question 5
             </a>
           </li>
         </ul>
       </section>
+
+      <a href="#" style="text-decoration: none; color: darkgoldenrod; margin-left: 14px;">
+        <h3>Questions
+      </a><i class="fa-solid fa-angle-down" style="
+          margin-left: 10px;" id="QuestionArrow"></i></h3>
+      </a>
+
+
+      <section class="sql_question" id="sql_question" style="display: none; margin-left: 35px;">
+        <ul>
+          <li>
+            <a href="/questions/sql-questions/questions/practice-1.html">
+
+              <svg fill="#000000" width="24" height="24" viewBox="0 0 256 256" id="Flat"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M220,47.99316v104a12.01343,12.01343,0,0,1-12,12H89.6499l17.17871,17.17871a3.99992,3.99992,0,1,1-5.65722,5.65625l-24-24a3.96241,3.96241,0,0,1-.79-1.15478c-.02124-.04553-.0503-.08618-.06983-.13269a3.96477,3.96477,0,0,1-.17993-.57971c-.01489-.05884-.0393-.11353-.05151-.17334a4.01873,4.01873,0,0,1-.07984-.79175L76,159.99316c0-.03662.00977-.07055.01074-.10693a3.9985,3.9985,0,0,1,.06738-.66675,3.9185,3.9185,0,0,1,.14258-.48193c.02881-.08594.0459-.17432.08033-.25855a3.95378,3.95378,0,0,1,.31738-.60278c.0166-.02649.0271-.05554.04419-.08166a4.0061,4.0061,0,0,1,.54809-.662l23.9607-23.9607a3.99992,3.99992,0,0,1,5.65722,5.65625l-17.165,17.165H208a4.00426,4.00426,0,0,0,4-4v-104a4.00427,4.00427,0,0,0-4-4H96a4.00427,4.00427,0,0,0-4,4v8a4,4,0,0,1-8,0v-8a12.01344,12.01344,0,0,1,12-12H208A12.01344,12.01344,0,0,1,220,47.99316ZM168,196a4.0002,4.0002,0,0,0-4,4v8a4.00427,4.00427,0,0,1-4,4H48a4.00427,4.00427,0,0,1-4-4V104a4.00427,4.00427,0,0,1,4-4H166.33643l-17.165,17.165a3.99992,3.99992,0,1,0,5.65722,5.65625l23.9607-23.96069a4.0061,4.0061,0,0,0,.54809-.662c.01709-.02612.02759-.05506.04419-.08142a3.984,3.984,0,0,0,.31738-.603c.03443-.08435.05152-.17285.08033-.25879a3.92106,3.92106,0,0,0,.14258-.48169,3.9985,3.9985,0,0,0,.06738-.66675c.001-.03637.01074-.07031.01074-.10693l-.00024-.00269a4.01863,4.01863,0,0,0-.07984-.79174c-.01221-.05982-.03662-.11438-.05127-.1731a3.97218,3.97218,0,0,0-.18017-.58c-.01953-.04663-.04859-.08752-.06983-.13317a3.962,3.962,0,0,0-.79-1.1543l-24-24a3.99992,3.99992,0,0,0-5.65722,5.65625L166.3501,92H48a12.01343,12.01343,0,0,0-12,12V208a12.01343,12.01343,0,0,0,12,12H160a12.01343,12.01343,0,0,0,12-12v-8A4.0002,4.0002,0,0,0,168,196Z" />
+              </svg>
+              Practice
+            </a>
+          </li>
+        </ul>
+      </section>
+    </section>
+
+
+    <div class="Project" style="margin-top: 20px;">
+      <a href="/questions/project/project.html" style="text-decoration: none;">
+        <h3>Project
+      </a><i class="fa-solid fa-angle-down" style="
+          margin-left: 10px;" id="ProjectArrow"></i></h3>
+      </a>
+    </div>
+    <section class="Project_Exercise" id="Project_Exercise" style="display: none;">
+      <ul>
+        <li>
+          <a href="/questions/project/mouseover_element.html">
+            <svg width="24" height="24" viewBox="0 0 48 48" id="a" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <style>
+                  .b {
+                    fill: #000000;
+                  }
+
+                  .c {
+                    fill: none;
+                    stroke: #000000;
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                    stroke-width: 1px;
+                  }
+                </style>
+              </defs>
+              <path class="c"
+                d="M14.5171,35.415H6.4026c-.4985,0-.9026-.4041-.9026-.9026v-13.504c0-.4985,.4041-.9026,.9026-.9026H41.5974c.4985,0,.9026,.4041,.9026,.9026v13.504c0,.4985-.4041,.9026-.9026,.9026h-8.1144" />
+              <rect class="c" x="14.5171" y="31.4366" width="18.9659" height="10.13" />
+              <path class="c" d="M33.4829,20.1056H14.5171V6.4334h14.9659l4,4v9.6723Z" />
+              <polyline class="c" points="29.8724 6.4334 29.8724 10.0439 33.4829 10.0439" />
+              <circle class="b" cx="39.8515" cy="22.8983" r=".75" />
+              <circle class="b" cx="36.8351" cy="22.8983" r=".75" />
+              <circle class="b" cx="33.8187" cy="22.8983" r=".75" />
+            </svg>
+            Mouseover Element
+          </a>
+        </li>
+
+        <li>
+          <a href="/questions/project/digital-clock.html">
+
+            <svg fill="#000000" width="24" height="24" viewBox="0 0 256 256" id="Flat"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M220,47.99316v104a12.01343,12.01343,0,0,1-12,12H89.6499l17.17871,17.17871a3.99992,3.99992,0,1,1-5.65722,5.65625l-24-24a3.96241,3.96241,0,0,1-.79-1.15478c-.02124-.04553-.0503-.08618-.06983-.13269a3.96477,3.96477,0,0,1-.17993-.57971c-.01489-.05884-.0393-.11353-.05151-.17334a4.01873,4.01873,0,0,1-.07984-.79175L76,159.99316c0-.03662.00977-.07055.01074-.10693a3.9985,3.9985,0,0,1,.06738-.66675,3.9185,3.9185,0,0,1,.14258-.48193c.02881-.08594.0459-.17432.08033-.25855a3.95378,3.95378,0,0,1,.31738-.60278c.0166-.02649.0271-.05554.04419-.08166a4.0061,4.0061,0,0,1,.54809-.662l23.9607-23.9607a3.99992,3.99992,0,0,1,5.65722,5.65625l-17.165,17.165H208a4.00426,4.00426,0,0,0,4-4v-104a4.00427,4.00427,0,0,0-4-4H96a4.00427,4.00427,0,0,0-4,4v8a4,4,0,0,1-8,0v-8a12.01344,12.01344,0,0,1,12-12H208A12.01344,12.01344,0,0,1,220,47.99316ZM168,196a4.0002,4.0002,0,0,0-4,4v8a4.00427,4.00427,0,0,1-4,4H48a4.00427,4.00427,0,0,1-4-4V104a4.00427,4.00427,0,0,1,4-4H166.33643l-17.165,17.165a3.99992,3.99992,0,1,0,5.65722,5.65625l23.9607-23.96069a4.0061,4.0061,0,0,0,.54809-.662c.01709-.02612.02759-.05506.04419-.08142a3.984,3.984,0,0,0,.31738-.603c.03443-.08435.05152-.17285.08033-.25879a3.92106,3.92106,0,0,0,.14258-.48169,3.9985,3.9985,0,0,0,.06738-.66675c.001-.03637.01074-.07031.01074-.10693l-.00024-.00269a4.01863,4.01863,0,0,0-.07984-.79174c-.01221-.05982-.03662-.11438-.05127-.1731a3.97218,3.97218,0,0,0-.18017-.58c-.01953-.04663-.04859-.08752-.06983-.13317a3.962,3.962,0,0,0-.79-1.1543l-24-24a3.99992,3.99992,0,0,0-5.65722,5.65625L166.3501,92H48a12.01343,12.01343,0,0,0-12,12V208a12.01343,12.01343,0,0,0,12,12H160a12.01343,12.01343,0,0,0,12-12v-8A4.0002,4.0002,0,0,0,168,196Z" />
+            </svg>
+            Digital Clock
+          </a>
+        </li>
+      </ul>
+    </section>
   </nav>
 </header>
 
@@ -1237,93 +1307,115 @@
 
 
 
-var JsArrow = document.getElementById('JsArrow');
-var questions = document.getElementById('question_js');
+  var JsArrow = document.getElementById('JsArrow');
+  var questions = document.getElementById('question_js');
 
 
 
-JsArrow.onclick = function() {jsqfunction()};
-function jsqfunction() {
+  JsArrow.onclick = function () { jsqfunction() };
+  function jsqfunction() {
 
 
-  if(questions.style.display === "none"){
-    questions.style.display = "block";
-    JsArrow.classList.remove("fa-angle-down");
-    JsArrow.classList.add("fa-angle-up");
+    if (questions.style.display === "none") {
+      questions.style.display = "block";
+      JsArrow.classList.remove("fa-angle-down");
+      JsArrow.classList.add("fa-angle-up");
 
-  }else{
-    questions.style.display = "none";
-    JsArrow.classList.remove("fa-angle-up");
-    JsArrow.classList.add("fa-angle-down");
+    } else {
+      questions.style.display = "none";
+      JsArrow.classList.remove("fa-angle-up");
+      JsArrow.classList.add("fa-angle-down");
+    }
+
   }
 
-}
+
+  var ProjectArrow = document.getElementById('ProjectArrow');
+  var Project_Exercise = document.getElementById('Project_Exercise');
+
+  ProjectArrow.onclick = function () {
+    projectfunction()
+  };
+
+  function projectfunction() {
+
+    if (Project_Exercise.style.display === "none") {
+      Project_Exercise.style.display = "block";
+      ProjectArrow.classList.remove("fa-angle-down");
+      ProjectArrow.classList.add("fa-angle-up");
+    } else {
+      Project_Exercise.style.display = "none";
+      ProjectArrow.classList.remove("fa-angle-up");
+      ProjectArrow.classList.add("fa-angle-down");
+    }
+
+  }
+
+  var SqlArrow = document.getElementById('SqlArrow');
+  var sqlblock = document.getElementById('sqlblock');
+
+  SqlArrow.onclick = function () {
+    sqlblockfunction()
+  };
+
+  function sqlblockfunction() {
+
+    if (sqlblock.style.display === "none") {
+      sqlblock.style.display = "block";
+      SqlArrow.classList.remove("fa-angle-down");
+      SqlArrow.classList.add("fa-angle-up");
+    } else {
+      sqlblock.style.display = "none";
+      SqlArrow.classList.remove("fa-angle-up");
+      SqlArrow.classList.add("fa-angle-down");
+    }
+
+  }
 
 
-var ProjectArrow = document.getElementById('ProjectArrow');
-var Project_Exercise = document.getElementById('Project_Exercise');
-
-ProjectArrow.onclick = function() {
-  projectfunction()
-};
-
-function projectfunction(){
-
-if(Project_Exercise.style.display === "none"){
-  Project_Exercise.style.display = "block";
-  ProjectArrow.classList.remove("fa-angle-down");
-  ProjectArrow.classList.add("fa-angle-up");
-}else{
-  Project_Exercise.style.display = "none";
-  ProjectArrow.classList.remove("fa-angle-up");
-  ProjectArrow.classList.add("fa-angle-down");
-}
-
-}
-
-var SqlArrow = document.getElementById('SqlArrow');
-var sqlblock = document.getElementById('sqlblock');
-
-SqlArrow.onclick = function() {
-  sqlblockfunction()
-};
-
-function sqlblockfunction(){
-
-if(sqlblock.style.display === "none"){
-  sqlblock.style.display = "block";
-  SqlArrow.classList.remove("fa-angle-down");
-  SqlArrow.classList.add("fa-angle-up");
-}else{
-  sqlblock.style.display = "none";
-  SqlArrow.classList.remove("fa-angle-up");
-  SqlArrow.classList.add("fa-angle-down");
-}
-
-}
+  var NormalizationArrow = document.getElementById('NormalizationArrow');
+  var NormalisationExercise = document.getElementById('Normalisation_exercise');
 
 
-var NormalizationArrow = document.getElementById('NormalizationArrow');
-var NormalisationExercise = document.getElementById('Normalisation_exercise');
+  NormalizationArrow.onclick = function () {
+    Normalisationfunction()
+  };
 
+  function Normalisationfunction() {
 
-NormalizationArrow.onclick = function() {
-  Normalisationfunction()
-};
+    if (NormalisationExercise.style.display === "none") {
+      NormalisationExercise.style.display = "block";
+      NormalizationArrow.classList.remove("fa-angle-down");
+      NormalizationArrow.classList.add("fa-angle-up");
+    } else {
+      NormalisationExercise.style.display = "none";
+      NormalizationArrow.classList.remove("fa-angle-up");
+      NormalizationArrow.classList.add("fa-angle-down");
+    }
 
-function Normalisationfunction(){
+  }
 
-if(NormalisationExercise.style.display === "none"){
-  NormalisationExercise.style.display = "block";
-  NormalizationArrow.classList.remove("fa-angle-down");
-  NormalizationArrow.classList.add("fa-angle-up");
-}else{
-  NormalisationExercise.style.display = "none";
-  NormalizationArrow.classList.remove("fa-angle-up");
-  NormalizationArrow.classList.add("fa-angle-down");
-}
+  var QuestionArrow = document.getElementById('QuestionArrow');
+  var sqlQuestion = document.getElementById('sql_question');
 
-}
+  QuestionArrow.onclick = function () {
+    Sqlquestionfunction()
+  };
+
+  function Sqlquestionfunction() {
+
+    if (sqlQuestion.style.display === "none") {
+      sqlQuestion.style.display = "block";
+      QuestionArrow.classList.remove("fa-angle-down");
+      QuestionArrow.classList.add("fa-angle-up");
+    } else {
+      sqlQuestion.style.display = "none";
+      QuestionArrow.classList.remove("fa-angle-up");
+      QuestionArrow.classList.add("fa-angle-down");
+    }
+
+  }
+
 
   const links = document.querySelectorAll('header a');
   // console.log('links',links);
@@ -1334,23 +1426,29 @@ if(NormalisationExercise.style.display === "none"){
       // console.log('linkhref',link.href);
       link.classList.add('active');
 
-     if (link.getAttribute("href").includes("jsquestion")) {
-            questions.style.display = "block";
-        } 
-    
-        if (link.getAttribute("href").includes("sql-questions")) {
-          sqlblock.style.display = "block";
-          if(link.getAttribute("href").includes("normalization")){
-            NormalisationExercise.style.display = "block";
-          }
-        }
+      if (link.getAttribute("href").includes("jsquestion") || link.getAttribute("href").includes("index.html")) {
+        questions.style.display = "block";
+      }
 
-        if (link.getAttribute("href").includes("project")) {
-            Project_Exercise.style.display = "block";
+      if (link.getAttribute("href").includes("sql-questions")) {
+        sqlblock.style.display = "block";
+        if (link.getAttribute("href").includes("normalization")) {
+          NormalisationExercise.style.display = "block";
         }
+        else {
+          sqlQuestion.style.display = "block";
+
+        }
+      }
+
+      if (link.getAttribute("href").includes("project")) {
+        Project_Exercise.style.display = "block";
+      }
+      setTimeout(() => {
+      link.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 500);
 
     }
-
   });
 
 
@@ -1358,5 +1456,7 @@ if(NormalisationExercise.style.display === "none"){
 <style>
   .menu-wrap nav li a.active {
     color: #000000;
+   
   }
+
 </style>

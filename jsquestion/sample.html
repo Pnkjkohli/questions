@@ -14,7 +14,7 @@
     <aside class="search-wrap">
       <div class="search">
         <label for="search">
-          <h3>Check If A Variable Is undefined or null
+          <h3>Check pdf links
           </h3>
         </label>
       </div>
@@ -38,29 +38,120 @@
     </div>
     <div class="task">
      
-      <div id="sectionsContainer" class="d-flex flex-column g-2 opacityHam ">
-        <div id="sectionsSubContainer" class="d-flex flex-row g-2 opacityHam ">
-          <button onclick="dateToNumber()">Convert Date to Number</button>
-          <div id="result"></div>
-        </div>
-    </div>
+     
+
+      <input type="file" id="pdfInput" accept="application/pdf">
+      <button id="extractLinksBtn">Extract & Validate Links</button>
+      <div id="output"style="
+      overflow: scroll;
+      height: 500px;
+  "></div>
+
     </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="/questions/include-html.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
   <script>
-          function dateToNumber() {
-            const result = document.getElementById("result");
-            result.innerHTML = `time in ms: ${typeDate()[0]} \n type is:  ${typeDate()[1]}`;
+    pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
+    
+    document.getElementById("extractLinksBtn").addEventListener("click", function () {
+        const file = document.getElementById("pdfInput").files[0];
+        if (!file) {
+            alert("Please select a PDF file first!");
+            return;
         }
-
-        function typeDate() {
-            let date = new Date();
-            let type = date.getTime();
-            console.log(type, typeof(type));
-            return [type, typeof(type)];
+    
+        const reader = new FileReader();
+        reader.onload = function () {
+            const typedArray = new Uint8Array(this.result);
+            pdfjsLib.getDocument(typedArray).promise.then(pdf => {
+                console.log(`📄 Total Pages: ${pdf.numPages}`);
+                let totalPages = pdf.numPages;
+                let allLinks = [];
+    
+                function processPage(pageNumber) {
+                    if (pageNumber > totalPages) {
+                        console.log("✅ All Pages Processed. Now Validating Links...");
+                        validateLinks(allLinks);
+                        return;
+                    }
+    
+                    pdf.getPage(pageNumber).then(page => {
+                        return page.getAnnotations();
+                    }).then(annotations => {
+                        let links = annotations
+                            .filter(anno => anno.url) // Sirf URL wale links extract karo
+                            .map(anno => ({ page: pageNumber, url: anno.url }));
+    
+                        allLinks = allLinks.concat(links);
+                        console.log(`🔍 Page ${pageNumber}:`, links);
+                        processPage(pageNumber + 1);
+                    }).catch(err => console.error(`❌ Error processing page ${pageNumber}:`, err));
+                }
+    
+                processPage(1);
+            }).catch(err => console.error("❌ Error loading PDF:", err));
+        };
+    
+        reader.readAsArrayBuffer(file);
+    });
+    
+    function validateLinks(links) {
+        const outputDiv = document.getElementById("output");
+        outputDiv.innerHTML = "<h3>Checking Links...</h3>";
+    
+        let validLinks = [];
+        let invalidLinks = [];
+        let blankLinks = [];
+    
+        if (links.length === 0) {
+            outputDiv.innerHTML = "<h3>No links found in PDF.</h3>";
+            return;
         }
-</script>
+    
+        links.forEach(linkObj => {
+            let { page, url } = linkObj;
+            
+            if (!url.trim()) {
+                blankLinks.push({ page, url });
+                return;
+            }
+    
+            fetch(url, { method: 'HEAD' })
+                .then(response => {
+                    if (response.ok) {
+                        validLinks.push({ page, url });
+                    } else {
+                        invalidLinks.push({ page, url });
+                    }
+                    updateOutput(validLinks, invalidLinks, blankLinks);
+                })
+                .catch(() => {
+                    invalidLinks.push({ page, url });
+                    updateOutput(validLinks, invalidLinks, blankLinks);
+                });
+        });
+    }
+    
+    function updateOutput(valid, invalid, blank) {
+        let outputDiv = document.getElementById("output");
+    
+        outputDiv.innerHTML = `
+            <h3>✅ Valid Links (${valid.length}):</h3>
+            <ul>${valid.map(l => `<li>Page ${l.page}: <a href="${l.url}" target="_blank">${l.url}</a></li>`).join('')}</ul>
+    
+            <h3>❌ Invalid Links (${invalid.length}):</h3>
+            <ul>${invalid.map(l => `<li>Page ${l.page}: ${l.url}</li>`).join('')}</ul>
+    
+            <h3>⚠ Blank Links (${blank.length}):</h3>
+            <ul>${blank.map(l => `<li>Page ${l.page}</li>`).join('')}</ul>
+        `;
+    }
+    </script>
+  <style>
+    .pdf-page { border: 1px solid #ddd; padding: 10px; margin: 10px 0; }
+</style>
 </body>
 
 </html>

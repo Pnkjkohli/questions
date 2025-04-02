@@ -1,150 +1,73 @@
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../index.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    
-    <title >Lets Pay With JS</title>
-
+    <title>PDF Link Checker</title>
 </head>
+<body>
+    <input type="file" id="uploadPDF" />
+    <button onclick="processPDF()">Check Links</button>
+    <ul id="linkResults"></ul>
 
-<body class="body">
-
-    <div  id="hamburger">
-        <ol class="position-relative bg-warning-subtle p-5 border border-success-subtle ">
-            <div class="position-absolute close" id="close">❌</div>
-            <li><a href="./task1.html"> Print Hello World</a></li>
-            <li><a href="./task2.html"> Add Two Numbers.</a></li>
-            <li><a href="./task3.html"> Find the Square Root</a></li>
-            <li><a href="./task4.html"> Calculate the Area of a Triangle</a></li>
-            <li><a href="./task5.html"> Swap Two Variables</a></li>
-            <li><a href="./task6.html"> Solve Quadratic Equation.</a></li>
-            <li><a href="./task7.html"> Convert Kilometers to Miles</a></li>
-            <li><a href="./task8.html"> Convert Celsius to Fahrenheit</a></li>
-            <li><a href="./task9.html"> Generate a Random Number</a></li>
-            <li><a href="./task10.html"> Check if a number is Positive, Negative, or Zero</a></li>
-            <hr>
-            <li><a href="./task11.html"> Check if a Number is Odd or Even</a></li>
-            <li><a href="./task12.html"> Find the Largest Among Three Numbers</a></li>
-            <li><a href="./task13.html"> Check Prime Number</a></li>
-            <li><a href="./task14.html"> Print All Prime Numbers in an Interval</a></li>
-            <li><a href="./task15.html"> Find the Factorial of a Number</a></li>
-            <li><a href="./task16.html"> Display the Multiplication Table</a></li>
-            <li><a href="./task17.html"> Print the Fibonacci Sequence</a></li>
-            <li><a href="./task18.html"> Check Armstrong Number</a></li>
-            <li><a href="./task19.html"> Find Armstrong Number in an Interval</a></li>
-            <li><a href="./task20.html"> Make a Simple Calculator.</a></li>
-            <hr>
-            <li><a href="./task21.html"> Find the Sum of Natural Numbers</a></li>
-            <li><a href="./task22.html">Check if the Numbers Have Same Last Digit</a></li>
-            <li><a href="./task23.html"> Find HCF or GCD</a></li>
-            <li><a href="./task24.html"> Find LCM</a></li>
-            <li><a href="./task25.html"> Find the Factors of a Number</a></li>
-            <li><a href="./task26.html">Find Sum of Natural Numbers Using Recursion</a></li>
-            <li><a href="./task27.html">Guess a Random Number</a></li>
-            <li><a href="./task28.html">Shuffle Deck of Cards</a></li>
-            <li><a href="./task29.html">Display Fibonacci Sequence Using Recursion</a></li>
-            <li><a href="./task30.html">Find Factorial of Number Using Recursion</a></li>
-            <hr>
-            <li><a href="./task31.html">Convert Decimal to Binary</a></li>
-            <li><a href="./task32.html"> Find ASCII Value of Character</a></li>
-            <li><a href="./task33.html">Check Whether a String is Palindrome or Not</a></li>
-            <li><a href="./task34.html">Sort Words in Alphabetical Order</a></li>
-            <li><a href="./task35.html"> Replace Characters of a String</a></li>
-            <li><a href="./task36.html">Reverse a String</a></li>
-            <li><a href="./task37.html">Create Objects in Different Ways</a></li>
-            <li><a href="./task38.html">Check the Number of Occurrences of a Character in the String</a></li>
-            <li><a href="./task39.html"> Convert the First Letter of a String into UpperCase</a></li>
-            <li><a href="./task40.html">Count the Number of Vowels in a String</a></li>
-            <hr>
-            <li><a href="./task41.html">Remove a Property from an Object</a></li>
-            <li><a href="./task42.html"> Check Whether a String Starts and Ends With Certain Characters</a></li>
-        </ol>
-    </div>
-
-    
-        <div class="d-flex  gap-4 opacityHam ">
-                <div class="hamburgerOpen" id="hamburgerOpen">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                          </svg>
-                          
-                </div> 
-                <div class="d-flex justify-content-between w-100">
-                    <h1 class="pb-2  mx-3 text-body-secondary ">
-                           37. Create Object In Different Ways
-                        </h1>
-                        <div class="preIcon d-flex align-items-center  gap-3">
-                       
-                                <a href="./task36.html">
-                                    <button class="btn btn-success text-white">
-                                            <span> 👈🏻 </span>
-                                            <!-- <span> ◀ </span> -->
-                                            Back
-                                    </button>
-                                </a>
-                                <a href="../index.html">
-                                    <button class="btn btn-success text-white">
-                                        Menu
-                                        <span>👆🏻</span>
-                                    </button>
-                                </a>
-        
-                                <a href="./task38.html">
-                                    <button class="btn btn-success text-white">
-                                        Next
-                                        <span>👉🏻</span>
-                                    </button>
-                                </a>
-                            </div>
-                </div>
-
-        </div>
-
- 
-    <div class="d-flex flex-row g-2 opacityHam ">
-
-
-            <div class="code_img text-nowrap overflow-scroll rounded-end w-100 border-2 bg-warning border-success p-4 mb-2 border-opacity-25" id="border-ham ">
-                    <div class=" text-nowrap d-flex text-center mx-4 gap-3">
-                    <h1 > Lets Decode</h1>
-                    <img width="40px" height="40px" src="../coder.jpg" class="rounded"/>
-                    </div>
-                    <div class="d-flex codeImg">
-                        <img src="../images/37.png"/>
-                    </div>
-                            </div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
     <script>
-        // 1st way
-function myName(name){
-console.log( `my name is ${name}`)
-return `my name is ${name}`
-}
-// myName("ritu");
+        async function extractLinks(pdfData) {
+            const pdf = await pdfjsLib.getDocument({ data: pdfData }).promise;
+            let links = new Set();
 
-myName=function(name){
-    console.log( `my name is ${name}`)
-} 
+            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                let page = await pdf.getPage(pageNum);
+                let annotations = await page.getAnnotations();
+                
+                annotations.forEach((annot) => {
+                    if (annot && annot.url) {
+                        links.add(annot.url);
+                    }
+                });
+            }
+            return Array.from(links);
+        }
 
-const myNames=(name)=>{
-    console.log( `my name is ${name}`)
+        function isValidURL(url) {
+            const regex = /^(https?:\/\/)?([\w-]+(\.[\w-]+)+)(:\d+)?(\/.*)?$/;
+            return regex.test(url);
+        }
 
-}
-myNames("ritu");
+        async function checkLinkStatus(url) {
+            try {
+                const response = await fetch(url, { method: "HEAD", mode: "no-cors" });
+                return response.ok ? "Working" : "Not Working";
+            } catch (error) {
+                return "Not Working";
+            }
+        }
 
+        async function processPDF() {
+            const fileInput = document.getElementById("uploadPDF").files[0];
+            if (!fileInput) {
+                alert("Please upload a PDF file first.");
+                return;
+            }
 
+            const reader = new FileReader();
+            reader.onload = async function (event) {
+                const pdfData = new Uint8Array(event.target.result);
+                const links = await extractLinks(pdfData);
+                const resultsList = document.getElementById("linkResults");
+                resultsList.innerHTML = "";
+
+                for (const link of links) {
+                    const valid = isValidURL(link) ? "Valid URL" : "Invalid URL";
+                    const working = await checkLinkStatus(link);
+                    
+                    let listItem = document.createElement("li");
+                    listItem.innerHTML = `<a href="${link}" target="_blank">${link}</a> -> ${valid}, ${working}`;
+                    resultsList.appendChild(listItem);
+                }
+            };
+            reader.readAsArrayBuffer(fileInput);
+        }
     </script>
-
 </body>
-
 </html>
