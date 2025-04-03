@@ -86,8 +86,6 @@ body {
 .menu-wrap {
   grid-area: menu;
   padding-bottom: 3em;
-  /* overflow: auto; */
-  /* overflow: scroll !important; */
   background: #fff;
   border-right: 1px solid #ede8f0;
   height: 100vh;
@@ -196,8 +194,7 @@ body {
     overflow: scroll;
 }
 div.dt-container div.dt-layout-row {
-  display: flex
-;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   width: 48.5rem;
@@ -224,21 +221,15 @@ canvas{
  top:20%;
   bottom: 0px;
   background-color: #00d4ff;
-  /* background-color: #ed0c1b37;  */
 }
 
 .menu-wrap nav section {
 display: block;
-/* padding: 3em 0 0; */
 padding: 0px;
 
 }
-.Project_Exercise{
-  height: 220px;
-overflow: scroll;
-}
+
 .questions_Js{
-  /* height: 250px; */
   height: 550px;
   overflow: scroll;
 }
